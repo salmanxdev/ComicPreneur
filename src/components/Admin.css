@@ -1,0 +1,40 @@
+/* src/components/Admin.css */
+.admin-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  text-align: center;
+  background: #f9f9f9;
+}
+
+.admin-container h2 {
+  margin-bottom: 20px;
+}
+
+.admin-form input {
+  display: block;
+  margin: 10px auto;
+  padding: 8px;
+  width: 60%;
+  font-size: 16px;
+}
+
+.admin-form button, .admin-dashboard button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.admin-dashboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-dashboard th, .admin-dashboard td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
