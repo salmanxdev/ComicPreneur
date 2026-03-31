@@ -1,0 +1,20 @@
+.outcomes {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.outcomes h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.outcomes ul {
+  margin-top: 15px;
+}
+
+.outcomes li {
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}

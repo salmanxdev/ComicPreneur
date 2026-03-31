@@ -1,0 +1,20 @@
+.objectives {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px;
+}
+
+.objectives h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.objectives ul {
+  margin-top: 15px;
+}
+
+.objectives li {
+  margin-bottom: 10px;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}

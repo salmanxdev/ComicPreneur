@@ -1,0 +1,24 @@
+.about {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.about p {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.event-details p,
+.event-details a {
+  margin-top: 8px;
+  display: block;
+  font-weight: bold;
+}
+
+.event-details a {
+  color: #ff4c4c;
+  text-decoration: underline;
+}

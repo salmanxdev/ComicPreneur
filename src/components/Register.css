@@ -1,0 +1,69 @@
+/* src/components/Register.css */
+
+/* Section styling */
+#register {
+  background: #f5f5f5;
+  padding: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Heading */
+#register h2 {
+  font-size: 2rem;
+  color: #222;
+  margin-bottom: 20px;
+}
+
+/* Form styling */
+.register-form {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Inputs styling */
+.register-form input {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+.register-form input:focus {
+  border-color: #4b9ce2;
+  outline: none;
+}
+
+/* Button styling */
+.register-form button {
+  padding: 12px;
+  background-color: #4b9ce2;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.register-form button:hover {
+  background-color: #3578c6;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .register-form {
+    padding: 20px;
+  }
+}

@@ -1,20 +1,27 @@
+import React from 'react';
+import Hero from './components/Hero';
+import About from './components/About';
+import Objectives from './components/Objectives';
+import Outcomes from './components/Outcomes';
+import Speaker from './components/Speaker';
+import WorkshopStructure from './components/WorkshopStructure';
+import Register from './components/Register';
+import Footer from './components/Footer';
 import './App.css';
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom" ;
-import LandingPage from './page/landing-page/LandingPage';
 
-function App(){
-
+function App() {
   return (
     <div className="App">
-      
-        <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<LandingPage/>} />
-        </Routes>
-        </BrowserRouter>
-      
+      <Hero />
+      <About />
+      <Objectives />
+      <Outcomes />
+      <Speaker />
+      <WorkshopStructure />
+      <Register />
+      <Footer />
     </div>
-      
   );
 }
+
 export default App;
