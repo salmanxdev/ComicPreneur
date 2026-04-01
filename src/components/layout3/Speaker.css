@@ -1,0 +1,85 @@
+/* 📍 src/components/layout3/Speaker.css */
+
+.speaker {
+  background: #db2828; /* Inherit the primary comic red scheme! */
+  color: white;
+  padding: 80px 40px; /* Better breathing room */
+  display: flex;
+  justify-content: center;
+  border-top: 15px solid #000;
+  border-bottom: 15px solid #000;
+}
+
+.speaker-container {
+  display: flex;
+  align-items: center;
+  gap: 80px; /* Separator gap expanded */
+  max-width: 1400px; /* Increased constraint to accommodate larger text block */
+  width: 100%;
+}
+
+.speaker-image {
+  width: 35vw;
+  max-width: 450px; /* Large high fidelity speaker portrait */
+  filter: drop-shadow(15px 15px 0px #000); /* Comic book styled portrait drop shadow! */
+  transform: rotate(-3deg);
+  border: 10px solid #fde047; /* Thick yellow comic framing */
+  border-radius: 12px;
+}
+
+.speaker-text {
+  /* Increased horizontally by +30% specifically per user request (was 500px previously) */
+  max-width: 700px; 
+  flex: 1;
+  position: relative;
+  z-index: 50; /* Hard priority elevation to prevent text culling explicitly */
+}
+
+.speaker-heading {
+  font-family: 'Bangers', cursive !important;
+  font-size: 65px; /* Huge comic structural heading */
+  color: #fde047 !important;
+  letter-spacing: 2px;
+  text-shadow: 4px 4px 0 #000;
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+
+/* Typography explicitly expanded */
+.speaker-paragraph {
+  font-family: 'Inter', sans-serif !important;
+  font-size: 20px; /* Significantly increased readable paragraph sizing */
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  color: #fde047 !important; /* Explicitly mapped to yellow per user constraint */
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.8); /* Re-sharpened drop-shadow to separate from yellow */
+}
+
+/* Responsive constraints */
+@media (max-width: 1024px) {
+  .speaker-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 50px;
+  }
+  .speaker-image {
+    width: 60vw;
+  }
+  .speaker-text {
+    max-width: 800px; /* Expand fully centrally on tablet */
+  }
+}
+
+@media (max-width: 768px) {
+  .speaker {
+    padding: 60px 20px;
+  }
+  .speaker-text h3 {
+    font-size: 45px;
+  }
+  .speaker-text p {
+    font-size: 18px; /* Maintain large typography on phones */
+  }
+}

@@ -1,21 +1,28 @@
 // 📍 src/App.jsx
 
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import Activities from "./components/Activities";
-import Speaker from "./components/Speaker";
-import Footer from "./components/Footer";
+import { useState } from 'react';
+import Navbar from "./components/layout1/Navbar";
+import Hero from "./components/layout1/Hero";
+import Activities from "./components/layout2/Activities";
+import Speaker from "./components/layout3/Speaker";
+import Footer from "./components/layout4/Footer";
+import Register from "./components/layout4/Register";
 
 import "./App.css";
 
 function App() {
+  const [showRegister, setShowRegister] = useState(false);
+
   return (
     <div className="app">
-      <Navbar />
-      <Hero />
+      <Navbar setShowRegister={setShowRegister} />
+      <Hero setShowRegister={setShowRegister} />
       <Activities />
       <Speaker />
-      <Footer />
+      <Footer setShowRegister={setShowRegister} />
+      
+      {/* Absolute Cinematic Comic Modal Render Priority */}
+      {showRegister && <Register onClose={() => setShowRegister(false)} />}
     </div>
   );
 }

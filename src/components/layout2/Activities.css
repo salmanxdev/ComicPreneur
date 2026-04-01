@@ -1,0 +1,266 @@
+/* 📍 src/components/layout2/Activities.css */
+
+.activities {
+  background: #000; /* Solid Black root underneath the UI layout boundaries */
+  width: 100%;
+  min-height: 85vh; 
+  padding: 100px 0 160px; /* Clear structural boundary layout space natively */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 15px solid #000;
+}
+
+/* 
+  Mathematically calculated master blood-red ceiling backplate.
+  Perfectly ceases 120 pixels from the floor yielding exactly the required structural buffer zone.
+*/
+.activities::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 120px); 
+  background: #db2828; 
+  z-index: 0;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1600px; 
+  margin: 0 auto;
+  position: relative;
+  perspective: 1200px;
+  z-index: 5; 
+}
+
+.cards-track {
+  position: relative;
+  width: 100%;
+  max-width: 1200px; 
+  height: 650px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 40px; 
+}
+
+/* Base properties for all individual cards */
+.carousel-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  max-width: 450px; 
+  height: auto;
+  max-height: 100%;
+  object-fit: contain;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1); 
+  border-radius: 12px; 
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6); 
+}
+
+.card-stacked {
+  transform: translate(-50%, -50%) scale(0.3) rotate(0deg);
+  z-index: 10;
+  opacity: 0;
+}
+
+.card-center {
+  transform: translate(-50%, -50%) scale(1.1); 
+  z-index: 15;
+  opacity: 1;
+  filter: brightness(1.1) drop-shadow(0px 0px 30px rgba(253, 224, 71, 0.5)); 
+}
+
+.card-left {
+  /* Pushed left linearly (490px) to sever visual cross-contamination */
+  transform: translate(calc(-50% - 490px), -50%) scale(0.7) rotate(-4deg);
+  z-index: 5;
+  opacity: 1;
+  filter: brightness(0.85); 
+}
+
+.card-right {
+  /* Pushed right linearly (490px) to sever visual cross-contamination */
+  transform: translate(calc(-50% + 490px), -50%) scale(0.7) rotate(4deg);
+  z-index: 5;
+  opacity: 1;
+  filter: brightness(0.85);
+}
+
+.card-hidden {
+  transform: translate(-50%, -50%) scale(0.1);
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* CAROUSEL ARROWS */
+.carousel-arrow {
+  background: transparent;
+  color: #fde047; 
+  border: none;
+  cursor: pointer;
+  padding: 15px;
+  z-index: 20;
+  transition: transform 0.2s, filter 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-arrow svg {
+  width: 90px;
+  height: 90px;
+  filter: drop-shadow(4px 4px 0px rgba(0,0,0,1));
+}
+
+.carousel-arrow:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(0px 0px 8px #fde047); 
+}
+
+.carousel-arrow:active {
+  transform: scale(0.9);
+}
+
+/* PAGINATION DOTS */
+.carousel-dots {
+  position: absolute;
+  bottom: 160px; /* Elevated substantially to clear the 120px structural divider */
+  display: flex;
+  gap: 20px;
+  z-index: 30; /* Placed aggressively over all background geometry layers to prevent slicing */
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #000; 
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.dot.active {
+  background: #fde047; 
+  transform: scale(1.4);
+  box-shadow: 0 0 10px #fde047;
+}
+
+/* 
+===============================================
+STRUCTURAL DIVIDER TAB (BOTTOM RIGHT BENT SHAPE)
+===============================================
+*/
+
+.activities-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px; /* 120px zone maps precisely to calc(100% - 120px) red ceiling above */
+  display: flex;
+  align-items: flex-start; /* CRITICAL: Must hang everything downward from top ceiling joint */
+  pointer-events: none;
+  z-index: 25; 
+}
+
+/* Flat horizontal track anchoring the leftmost extent */
+.divider-left {
+  flex: 1;
+  height: 30px; /* Thin line physically */
+  background: #db2828; 
+  border-bottom: 15px solid #fde047; 
+  box-sizing: content-box; 
+  /* Total height spanning down: 45px! */
+}
+
+/* Exact positional coupling map utilizing multi-layer pure CSS polygon rendering */
+.divider-slant-wrapper {
+  width: 70px;
+  height: 95px; /* The furthest depth (95px equivalent to Right) requires full envelope volume */
+  position: relative;
+}
+
+/* Math: Right goes down to 95, left sits at 45. The delta gap visually translates a yellow sloped line! */
+.divider-slant-border {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: #fde047;
+  clip-path: polygon(0 0, 100% 0, 100% 95px, 0 45px); /* Matches exact outer boundaries */
+}
+
+.divider-slant-inner {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: #db2828; 
+  clip-path: polygon(0 0, 100% 0, 100% 80px, 0 30px); /* 15px vertical difference dictates exact linear width thickness inherently natively */
+}
+
+/* Deep tab housing bounding element */
+.divider-right {
+  width: 250px; /* Structurally restricted width (severely stops page overflow logic natively) */
+  height: 80px; /* Deepest stretch visually natively */
+  background: #db2828;
+  border-bottom: 15px solid #fde047; /* Reaches 95px natively! */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box; 
+}
+
+/* Refined typographic footprint constraints */
+.activities-title-text {
+  font-family: 'Bangers', cursive;
+  font-size: 38px; /* Substantially reduced for perfect non-overflow nesting */
+  font-weight: normal;
+  color: #fde047; 
+  letter-spacing: 1.5px; /* Tightly kerned natively per spec */
+  margin: 0;
+  padding-bottom: 4px; 
+  text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+}
+
+/* RESPONSIVE SCALING */
+@media (max-width: 1400px) {
+  .carousel-card { max-width: 400px; }
+  .card-left { transform: translate(calc(-50% - 410px), -50%) scale(0.65) rotate(-5deg); }
+  .card-right { transform: translate(calc(-50% + 410px), -50%) scale(0.65) rotate(5deg); }
+}
+
+@media (max-width: 1200px) {
+  .carousel-card { max-width: 320px; }
+  .card-left { transform: translate(calc(-50% - 340px), -50%) scale(0.65) rotate(-6deg); }
+  .card-right { transform: translate(calc(-50% + 340px), -50%) scale(0.65) rotate(6deg); }
+  .carousel-arrow svg { width: 70px; height: 70px; }
+}
+
+@media (max-width: 900px) {
+  .cards-track { height: 500px; margin: 0 10px; }
+  .carousel-card { max-width: 250px; }
+  .card-left { transform: translate(calc(-50% - 220px), -50%) scale(0.65) rotate(-5deg); }
+  .card-right { transform: translate(calc(-50% + 220px), -50%) scale(0.65) rotate(5deg); }
+  .divider-right { width: 200px; }
+  .activities-title-text { font-size: 32px; letter-spacing: 1px; }
+}
+
+@media (max-width: 600px) {
+  .cards-track { height: 400px; margin: 0; }
+  .carousel-card { max-width: 200px; }
+  .card-left { transform: translate(calc(-50% - 130px), -50%) scale(0.6) rotate(-4deg); }
+  .card-right { transform: translate(calc(-50% + 130px), -50%) scale(0.6) rotate(4deg); }
+  .carousel-arrow svg { width: 45px; height: 45px; }
+  .divider-right { width: 140px; }
+  .activities-title-text { font-size: 24px; }
+}
