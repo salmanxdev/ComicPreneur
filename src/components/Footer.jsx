@@ -1,10 +1,14 @@
-// src/components/Footer.jsx
-import React from 'react';
+// 📍 src/components/Footer.jsx
 
 const Footer = () => {
   return (
-    <footer>
-      <p>&copy; 2026 College Name. All rights reserved.</p>
+    <footer style={{
+      background: "black",
+      color: "white",
+      padding: "20px",
+      textAlign: "center"
+    }}>
+      © Comicpreneur Event
     </footer>
   );
 };

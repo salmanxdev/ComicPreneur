@@ -1,0 +1,22 @@
+/* 📍 src/components/Activities.css */
+
+.activities {
+  background: red;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card {
+  width: 200px;
+  transition: 0.3s;
+}
+
+.main {
+  transform: scale(1.2);
+}
