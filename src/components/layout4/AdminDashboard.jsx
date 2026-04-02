@@ -1,19 +1,19 @@
-// src/components/AdminDashboard.jsx
+// src/components/layout4/AdminDashboard.jsx
+
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase";
+import { db } from "../../firebase";
 import * as XLSX from "xlsx";
 
 const AdminDashboard = () => {
-  const [registrations, setRegistrations] = useState([]);
+  const [registrations, setRegistrations] = useState([]); // ✅ FIXED
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch data
+  // 🔥 Fetch Data
   useEffect(() => {
     const fetchRegistrations = async () => {
       try {
-        console.log("Fetching registrations...");
         const snapshot = await getDocs(collection(db, "registrations"));
 
         const data = snapshot.docs.map(doc => ({
@@ -21,10 +21,8 @@ const AdminDashboard = () => {
           ...doc.data()
         }));
 
-        console.log("Data fetched:", data);
         setRegistrations(data);
       } catch (err) {
-        console.error("Error fetching:", err);
         setError(err.message || "Error fetching data");
       } finally {
         setLoading(false);
@@ -34,46 +32,53 @@ const AdminDashboard = () => {
     fetchRegistrations();
   }, []);
 
-  // Export to Excel
+  // 📊 Export Excel
   const exportExcel = () => {
-    try {
-      if (registrations.length === 0) {
-        alert("No data to export!");
-        return;
-      }
-
-      const formattedData = registrations.map(reg => ({
-        ...reg,
-        timestamp: reg.timestamp?.toDate
-          ? reg.timestamp.toDate().toLocaleString()
-          : reg.timestamp || ""
-      }));
-
-      const ws = XLSX.utils.json_to_sheet(formattedData);
-      const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Registrations");
-
-      XLSX.writeFile(wb, "registrations.xlsx");
-    } catch (err) {
-      console.error("Export error:", err);
-      alert("Error exporting Excel");
+    if (registrations.length === 0) {
+      alert("No data to export!");
+      return;
     }
+
+    const formattedData = registrations.map(reg => ({
+      ...reg,
+      timestamp: reg.timestamp?.toDate
+        ? reg.timestamp.toDate().toLocaleString()
+        : reg.timestamp || ""
+    }));
+
+    const ws = XLSX.utils.json_to_sheet(formattedData);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Registrations");
+
+    XLSX.writeFile(wb, "registrations.xlsx");
   };
 
-  // UI States
-  if (loading) return <div style={{padding:"20px"}}>Loading registrations...</div>;
+  // ⏳ Loading
+  if (loading) {
+    return <div style={{ padding: "20px" }}>Loading registrations...</div>;
+  }
 
+  // ❌ Error
   if (error) {
     return (
       <div style={{ color: "red", padding: "20px" }}>
-        <h3>Error loading data:</h3>
+        <h3>Error:</h3>
         <pre>{error}</pre>
       </div>
     );
   }
 
+  // ✅ UI
   return (
-    <div style={{ padding: "20px" }}>
+    <div
+      className="admin-dashboard"
+      style={{
+        background: "white",
+        color: "black",
+        minHeight: "100vh",
+        padding: "20px"
+      }}
+    >
       <h1>Admin Dashboard</h1>
 
       <button onClick={exportExcel} style={{ marginBottom: "20px" }}>
@@ -83,7 +88,16 @@ const AdminDashboard = () => {
       {registrations.length === 0 ? (
         <p>No registrations found.</p>
       ) : (
-        <table border="1" cellPadding="10" style={{ borderCollapse: "collapse", width: "100%" }}>
+        <table
+          border="1"
+          cellPadding="10"
+          style={{
+            borderCollapse: "collapse",
+            width: "100%",
+            background: "white",
+            color: "black"
+          }}
+        >
           <thead>
             <tr>
               <th>Full Name</th>
@@ -107,14 +121,11 @@ const AdminDashboard = () => {
                 <td>{reg.enrollmentNo}</td>
                 <td>{reg.contactNo}</td>
                 <td>{reg.email}</td>
-
-                {/* 🔥 FIXED PART (important) */}
                 <td>
                   {reg.timestamp?.toDate
                     ? reg.timestamp.toDate().toLocaleString()
-                    : reg.timestamp || "N/A"}
+                    : "N/A"}
                 </td>
-
               </tr>
             ))}
           </tbody>

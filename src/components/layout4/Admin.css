@@ -1,40 +1,111 @@
-/* src/components/Admin.css */
+/* src/components/layout4/Admin.css */
+
+/* 🌍 Full page styling */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* 🔐 Login Container */
 .admin-container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  border: 2px solid #eee;
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
   border-radius: 10px;
   text-align: center;
-  background: #f9f9f9;
+  background: #ffffff;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
+/* 🔐 Login Heading */
 .admin-container h2 {
   margin-bottom: 20px;
+  color: #333;
 }
 
+/* 🔐 Form Inputs */
 .admin-form input {
   display: block;
-  margin: 10px auto;
-  padding: 8px;
-  width: 60%;
+  margin: 12px auto;
+  padding: 10px;
+  width: 90%;
   font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.admin-form button, .admin-dashboard button {
+/* 🔐 Button */
+.admin-form button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  margin-bottom: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: 0.3s;
 }
 
+.admin-form button:hover {
+  background-color: #0056b3;
+}
+
+/* 📊 Dashboard Container */
+.admin-dashboard {
+  background: #f5f7fa;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+/* 📊 Heading */
+.admin-dashboard h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+/* 📊 Export Button */
+.admin-dashboard button {
+  display: block;
+  margin: 0 auto 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.admin-dashboard button:hover {
+  background-color: #1e7e34;
+}
+
+/* 📊 Table Styling */
 .admin-dashboard table {
   width: 100%;
   border-collapse: collapse;
+  background: white;
 }
 
-.admin-dashboard th, .admin-dashboard td {
-  border: 1px solid #ccc;
-  padding: 8px;
+/* 📊 Table Header */
+.admin-dashboard th {
+  background: #007bff;
+  color: white;
+  padding: 10px;
+}
+
+/* 📊 Table Cells */
+.admin-dashboard td {
+  padding: 10px;
   text-align: center;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+/* 📊 Row Hover Effect */
+.admin-dashboard tr:hover {
+  background-color: #f1f1f1;
 }
