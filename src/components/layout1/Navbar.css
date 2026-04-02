@@ -16,26 +16,58 @@
   font-weight: 800;
   padding: 0;
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-nav);
 }
 
 .navbar li {
-  color: #000;
+  color: var(--fill-light-strong);
   cursor: pointer;
   letter-spacing: 1px;
-  font-size: 16px;
+  font-size: 24px;
   display: inline-block;
+  line-height: 1;
+  -webkit-text-stroke: 1px var(--stroke-dark);
+  text-shadow: 1px 1px 0 var(--stroke-dark-soft);
+}
+
+.navbar li a,
+.navbar li span {
+  display: block;
+  color: inherit;
 }
 
 @media (max-width: 768px) {
   .navbar {
-    padding: 16px 30px;
-    border-radius: 0px 0px 20px 20px;
+    width: calc(100% - 20px);
+    max-width: 100%;
+    padding: 10px 12px;
+    border-radius: 0 0 20px 20px;
+    margin: 0 auto;
   }
+
   .navbar ul {
-    gap: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+    flex-wrap: nowrap;
   }
+
   .navbar li {
-    font-size: 14px;
+    font-size: clamp(11px, 2.9vw, 15px);
+    text-align: center;
+    letter-spacing: 0.2px;
+    flex: 1 1 0;
+    min-width: 0;
+    -webkit-text-stroke: 0.6px var(--stroke-dark);
+    text-shadow: 0.8px 0.8px 0 var(--stroke-dark-soft);
+  }
+
+  .navbar li a,
+  .navbar li span {
+    padding: 2px 0;
+    white-space: nowrap;
   }
 }

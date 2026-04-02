@@ -222,14 +222,15 @@ STRUCTURAL DIVIDER TAB (BOTTOM RIGHT BENT SHAPE)
 
 /* Refined typographic footprint constraints */
 .activities-title-text {
-  font-family: 'Bangers', cursive;
+  font-family: var(--font-display);
   font-size: 38px; /* Substantially reduced for perfect non-overflow nesting */
   font-weight: normal;
-  color: #fde047; 
+  color: var(--fill-light);
   letter-spacing: 1.5px; /* Tightly kerned natively per spec */
   margin: 0;
   padding-bottom: 4px; 
-  text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+  -webkit-text-stroke: 1.5px var(--stroke-dark);
+  text-shadow: 2px 2px 0 var(--stroke-dark-soft);
 }
 
 /* RESPONSIVE SCALING */

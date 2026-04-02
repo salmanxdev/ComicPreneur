@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
+import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -27,6 +28,9 @@ try {
 
 // Initialize Firestore
 export const db = getFirestore(app);
+
+// Initialize Cloud Storage
+export const storage = getStorage(app);
 
 // Export Firebase app if needed elsewhere
 export default app;
