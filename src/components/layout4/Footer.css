@@ -15,6 +15,7 @@
   flex-direction: column;
   overflow: hidden;
   border-top: 15px solid #db2828; /* Aggressive blood red cap separating from the DOM above */
+  box-sizing: border-box;
 }
 
 /* Sharp geometric yellow slant covering the top-left gap natively */
@@ -41,6 +42,7 @@
   gap: 80px;
   position: relative;
   z-index: 10;
+  box-sizing: border-box;
 }
 
 /* -----------------------------
@@ -264,11 +266,33 @@
 
 @media (max-width: 768px) {
   .footer-cutout-top { width: 80%; }
-  .footer-content { padding: 40px 20px; text-align: center; }
-  .footer-logo { font-size: 55px; }
-  .footer-slogan { font-size: 20px; }
-  .footer-links ul { align-items: center; }
-  .footer-socials { display: flex; flex-direction: column; align-items: center; }
-  .social-pills { justify-content: center; }
-  .footer-bottom p { font-size: 12px; }
+  .footer-content { 
+    padding: 30px 20px; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 30px; 
+  }
+  .footer-logo { font-size: 26px; letter-spacing: 1.5px; width: 100%; text-align: center; line-height: 1.2; }
+  .footer-slogan { font-size: 13px; width: 100%; white-space: normal; text-align: center; box-sizing: border-box; padding: 6px 12px; margin-bottom: 15px; }
+  .footer-heading { font-size: 18px; padding: 4px 12px; margin-bottom: 20px; letter-spacing: 1.5px; }
+  .footer-subtext { font-size: 13px; text-align: center; max-width: 90%; }
+  
+  .footer-links {
+    padding-top: 0; /* Eradicate the artificial desktop heading alignment margin when vertically stacked */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .footer-links ul { align-items: center; gap: 12px; }
+  
+  .footer-socials { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    width: 100%; 
+  }
+  .social-pills { justify-content: center; gap: 12px; }
+  .social-pill { width: 50px; height: 50px; border-width: 3px; }
+  .social-pill svg { width: 22px !important; height: 22px !important; }
+  .footer-bottom p { font-size: 10px; }
 }

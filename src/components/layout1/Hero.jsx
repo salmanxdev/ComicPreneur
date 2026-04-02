@@ -6,8 +6,14 @@ import "./Hero.css";
 const Hero = ({ setShowRegister }) => {
   const logoRef = useRef(null);
   const btnRef = useRef(null);
+  const partnersRef = useRef(null);
   
   useEffect(() => {
+    gsap.fromTo(partnersRef.current,
+      { y: -30, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: "back.out(1)", delay: 0.1 }
+    );
+
     gsap.fromTo(logoRef.current,
       { y: -50, opacity: 0, scale: 0.8 },
       { 
@@ -62,6 +68,14 @@ const Hero = ({ setShowRegister }) => {
 
   return (
     <section className="hero" id="about">
+      
+      {/* Collab Organizers Hub */}
+      <div className="hero-partners" ref={partnersRef}>
+        <img src="/assets/ecell_LNCTS.png" alt="E-Cell LNCTS" className="partner-logo lncts-logo" />
+        <span className="partner-x">X</span>
+        <img src="/assets/ecell_JNCT.png" alt="JNCT E-Cell" className="partner-logo jnct-logo" />
+      </div>
+
       <div className="hero-logo-container">
         
         <div className="comic-title-container">

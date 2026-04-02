@@ -56,23 +56,65 @@
   font-size: 22px;
 }
 
-.event-details a {
-  margin-top: 20px;
+.location-btn {
+  margin-top: 25px;
   display: inline-block;
-  font-weight: bold;
-  font-size: 22px;
-  color: #db2828;
-  text-decoration: underline;
-  transition: all 0.2s;
+  padding: 12px 25px;
+  background: #fde047; /* Yellow comic button base */
+  color: #db2828 !important; /* Blood red text */
+  font-family: 'Bangers', cursive;
+  font-size: 26px !important;
+  text-decoration: none !important;
+  text-transform: uppercase;
+  border: 4px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.event-details a:hover {
-  filter: brightness(1.2);
-  transform: scale(1.05);
+.location-btn:hover {
+  transform: translate(-3px, -3px) scale(1.05);
+  box-shadow: 7px 7px 0 #000;
 }
 
 @media (max-width: 768px) {
-  .about-title { font-size: 45px; }
-  .about p { font-size: 18px; }
-  .event-details p, .event-details a { font-size: 16px; }
+  .about { 
+    padding: 10% 5%; 
+    box-sizing: border-box; 
+  }
+  
+  .about-title { 
+    font-size: 9vw; 
+    margin-bottom: 5%; 
+  }
+  
+  .about p { 
+    font-size: 4.5vw; 
+    line-height: 1.6; 
+    margin-bottom: 5%; 
+  }
+  
+  .event-details { 
+    width: 95%; 
+    max-width: 100%;
+    margin: 5% auto 0;
+    display: block; 
+    padding: 5%; 
+    border-width: 0.3rem;
+    box-shadow: 0.4rem 0.4rem 0px rgba(0,0,0,1);
+    box-sizing: border-box;
+  }
+  
+  .event-details p { 
+    font-size: 4vw; 
+    margin: 2% 0; 
+  }
+  
+  .location-btn { 
+    font-size: 4.5vw !important; 
+    padding: 3% 5%; 
+    margin-top: 5%;
+    width: 100%; 
+    box-sizing: border-box; 
+    text-align: center; 
+  }
 }

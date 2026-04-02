@@ -1,8 +1,12 @@
 // 📍 src/App.jsx
 
-import { useState } from 'react';
+import { useState } from "react";
 import Navbar from "./components/layout1/Navbar";
 import Hero from "./components/layout1/Hero";
+import About from "./components/layout3/About";
+import Objectives from "./components/layout2/Objectives";
+import Outcomes from "./components/layout2/Outcomes";
+import WorkshopStructure from "./components/layout2/WorkshopStructure";
 import Activities from "./components/layout2/Activities";
 import Speaker from "./components/layout3/Speaker";
 import Footer from "./components/layout4/Footer";
@@ -17,10 +21,14 @@ function App() {
     <div className="app">
       <Navbar setShowRegister={setShowRegister} />
       <Hero setShowRegister={setShowRegister} />
+      <About />
+      <Objectives />
+      <Outcomes />
+      <WorkshopStructure />
       <Activities />
       <Speaker />
       <Footer setShowRegister={setShowRegister} />
-      
+
       {/* Absolute Cinematic Comic Modal Render Priority */}
       {showRegister && <Register onClose={() => setShowRegister(false)} />}
     </div>
