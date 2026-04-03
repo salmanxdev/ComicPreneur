@@ -16,8 +16,8 @@
   background-position: 0 0, 10px 10px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 10px; /* Reduced root padding */
+  align-items: flex-start;
+  padding: 48px 10px 24px;
   box-sizing: border-box; /* Hard explicit geometric clamp */
   overflow-y: auto; 
   overflow-x: hidden; /* Forbid horizontal escape completely */
@@ -34,6 +34,7 @@
   padding: 30px 25px; 
   transform-origin: center center;
   box-sizing: border-box; /* Strict boundary clamp */
+  margin: 24px 0;
 }
 
 /* Floating Retro 'X' Cancel Button */
@@ -73,7 +74,7 @@
   max-width: 100%;
   border: 4px solid #fff;
   box-shadow: -4px -4px 0px #db2828; 
-  margin: -45px auto 20px auto; /* Dropped extrusion height to prevent X intersection */
+  margin: -18px auto 20px auto;
   text-align: center;
   transform: rotate(-2deg);
 }
@@ -172,20 +173,23 @@
 }
 
 .qr-placeholder-box {
-  width: 100px;
-  height: 100px;
-  background: #000;
-  border: 3px solid #fde047;
+  width: min(100%, 240px);
+  aspect-ratio: 1;
+  background: #fff;
+  border: 3px solid #000;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fde047;
-  font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: 12px;
-  text-align: center;
-  padding: 5px;
+  overflow: hidden;
+  padding: 8px;
   box-shadow: 3px 3px 0 #db2828;
+}
+
+.payment-qr-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .qr-subtitle {
@@ -197,6 +201,51 @@
   text-transform: uppercase;
 }
 
+/* File Upload Comic Wrapper */
+.file-upload-container {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.upload-title {
+  margin: 0 0 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.hidden-file-input {
+  display: none; /* Masks horrific browser native styling */
+}
+
+.file-upload-label {
+  display: block;
+  background: #fde047;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 10px;
+  border: 4px solid #000;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0px #000;
+  transition: all 0.2s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-upload-label:hover {
+  background: #000;
+  color: #fde047;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #db2828;
+}
+
 /* Responsive Compress */
 @media (max-width: 600px) {
   .comic-register-form {
@@ -205,23 +254,24 @@
 
   .register-modal {
     width: 85%; /* Strictly narrow bounds */
-    padding: 15px 12px; 
+    padding: 18px 12px 15px;
     border-width: 3px;
     box-shadow: 4px 4px 0px #db2828; 
+    margin: 16px 0;
   }
 
   .comic-close-btn {
     width: 30px;
     height: 30px;
     font-size: 14px;
-    top: -10px;
-    right: -10px;
+    top: 8px;
+    right: 8px;
     border-width: 2px;
     box-shadow: 2px 2px 0 #000;
   }
 
   .register-header-box {
-    margin: -20px auto 10px auto; 
+    margin: 0 auto 10px auto; 
     padding: 4px 8px; /* Extremely thin slice */
     border-width: 2px;
     box-shadow: -2px -2px 0px #db2828;
@@ -261,15 +311,20 @@
   }
 
   .qr-placeholder-box {
-    width: 80px; /* Killed the height of the layout */
-    height: 80px; 
-    font-size: 10px;
+    width: min(100%, 180px);
     border-width: 2px;
-    padding: 5px;
+    padding: 6px;
   }
 
   .qr-subtitle {
     font-size: 10px;
+  }
+
+  .file-upload-label {
+    font-size: 12px;
+    padding: 8px;
+    border-width: 2px;
+    box-shadow: 2px 2px 0 #000;
   }
 
   .comic-submit-btn {

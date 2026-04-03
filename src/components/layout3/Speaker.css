@@ -36,23 +36,24 @@
 }
 
 .speaker-heading {
-  font-family: 'Bangers', cursive !important;
+  font-family: var(--font-display) !important;
   font-size: 65px; /* Huge comic structural heading */
-  color: #fde047 !important;
+  color: var(--fill-light) !important;
   letter-spacing: 2px;
-  text-shadow: 4px 4px 0 #000;
+  -webkit-text-stroke: 1.5px var(--stroke-dark);
+  text-shadow: 2px 2px 0 var(--stroke-dark-soft);
   margin-bottom: 25px;
   margin-top: 0;
 }
 
 /* Typography explicitly expanded */
 .speaker-paragraph {
-  font-family: 'Inter', sans-serif !important;
+  font-family: var(--font-detail) !important;
   font-size: 20px; /* Significantly increased readable paragraph sizing */
   line-height: 1.6;
   margin-bottom: 20px;
   font-weight: 500;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.04em;
   color: #fde047 !important; /* Explicitly mapped to yellow per user constraint */
   text-shadow: 2px 2px 0px rgba(0,0,0,0.8); /* Re-sharpened drop-shadow to separate from yellow */
 }

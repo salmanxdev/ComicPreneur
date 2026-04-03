@@ -2,7 +2,8 @@
 import './Register.css';
 import React, { useState, useEffect, useRef } from "react";
 import { collection, addDoc } from "firebase/firestore";
-import { db } from "../../firebase"; // Mapped corrected relative path
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../../firebase";
 import gsap from 'gsap';
 
 const Register = ({ onClose }) => {
@@ -18,6 +19,8 @@ const Register = ({ onClose }) => {
     contactNo: "",
     email: ""
   });
+  const [paymentFile, setPaymentFile] = useState(null);
+  const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
     // Smooth Normal Transition Entrance
@@ -45,14 +48,35 @@ const Register = ({ onClose }) => {
     }));
   };
 
+  const handleFileChange = (e) => {
+    if (e.target.files[0]) {
+      setPaymentFile(e.target.files[0]);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!paymentFile) {
+      alert("Please upload your payment screenshot before submitting! 🚨");
+      return;
+    }
+
     try {
+      setIsUploading(true);
+
+      const storageRef = ref(storage, `payment_screenshots/${Date.now()}_${paymentFile.name}`);
+      const snapshot = await uploadBytes(storageRef, paymentFile);
+      const paymentUrl = await getDownloadURL(snapshot.ref);
+
       await addDoc(collection(db, "registrations"), {
         ...formData,
+        paymentScreenshotUrl: paymentUrl,
         timestamp: new Date()
       });
-      alert("Registration Form Successfully Submitted! Boom! ⚡");
+
+      setIsUploading(false);
+      alert("Registration & Payment Proof Successfully Submitted! Boom! ⚡");
       setFormData({
         fullName: "",
         course: "",
@@ -62,10 +86,12 @@ const Register = ({ onClose }) => {
         contactNo: "",
         email: ""
       });
+      setPaymentFile(null);
       handleClose(); // Auto-close modal on success
     } catch (err) {
       console.error(err);
-      alert("Error submitting form. The servers might be under villainous attack. Try again.");
+      setIsUploading(false);
+      alert("Error submitting form or uploading file. The servers might be under villainous attack. Try again.");
     }
   };
 
@@ -101,12 +127,33 @@ const Register = ({ onClose }) => {
           <div className="payment-qr-section">
             <p className="qr-title">Complete Registration Payment ⚡</p>
             <div className="qr-placeholder-box">
-              <span>SCAN QR (PENDING)</span>
+              <img
+                src="/assets/payment-qr.jpeg"
+                alt="Payment QR code"
+                className="payment-qr-image"
+              />
             </div>
             <p className="qr-subtitle">Scan via UPI to secure your spot</p>
+
+            <div className="file-upload-container">
+              <p className="upload-title">Upload Payment Screenshot</p>
+              <label htmlFor="paymentProof" className="file-upload-label">
+                {paymentFile ? `FILE: ${paymentFile.name}` : "Choose payment screenshot"}
+              </label>
+              <input
+                type="file"
+                id="paymentProof"
+                accept="image/*"
+                required
+                onChange={handleFileChange}
+                className="hidden-file-input"
+              />
+            </div>
           </div>
           
-          <button type="submit" className="comic-submit-btn">REGISTER NOW</button>
+          <button type="submit" className="comic-submit-btn" disabled={isUploading}>
+            {isUploading ? "UPLOADING PROTOCOLS... ⏳" : "REGISTER NOW"}
+          </button>
         </form>
       </div>
     </div>

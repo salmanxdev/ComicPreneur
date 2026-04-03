@@ -1,4 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;800&family=Jaini&family=Jersey+20&family=League+Gothic&display=swap');
+
+:root {
+  --font-body: 'Inter', sans-serif;
+  --font-detail: 'League Gothic', sans-serif;
+  --font-display: 'Jersey 20', cursive;
+  --font-nav: 'Jaini', cursive;
+  --stroke-dark: #2a0505;
+  --stroke-dark-soft: #5f1212;
+  --fill-light: #fff0a8;
+  --fill-light-strong: #fff8d6;
+}
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -15,7 +26,7 @@ body {
   background-size: 400% 400%;
   animation: bgGradient 15s ease infinite;
   color: #fff;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   overflow-x: hidden;
 }
 
@@ -41,4 +52,6 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin: 0;
+  font-family: var(--font-detail);
+  letter-spacing: 0.03em;
 }

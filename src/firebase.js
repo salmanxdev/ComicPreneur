@@ -1,9 +1,11 @@
 // src/firebase.js
+
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
+import { getStorage } from "firebase/storage";
 
-// ✅ NEW Firebase config (your new project)
+// Firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyAKQQ2mzm4EMo_3mAiux05s7zyVU-FGFWk",
   authDomain: "comicpreneur-16.firebaseapp.com",
@@ -18,7 +20,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 // Analytics (safe handling)
-
 let analytics;
 try {
   analytics = getAnalytics(app);
@@ -26,7 +27,11 @@ try {
   console.warn("Analytics not supported in this environment");
 }
 
-// ✅ Firestore (KEEP THIS — your app needs it)
+// Firestore
 export const db = getFirestore(app);
 
+// Cloud Storage
+export const storage = getStorage(app);
+
+// Export app
 export default app;
