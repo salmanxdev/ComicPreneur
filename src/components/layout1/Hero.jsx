@@ -71,9 +71,9 @@ const Hero = ({ setShowRegister }) => {
       
       {/* Collab Organizers Hub */}
       <div className="hero-partners" ref={partnersRef}>
-        <img src="/assets/ecell_LNCTS.png" alt="E-Cell LNCTS" className="partner-logo lncts-logo" />
+        <img src="/assets/ecell_JNCT.png" alt="E-Cell LNCTS" className="partner-logo lncts-logo" />
         <span className="partner-x">X</span>
-        <img src="/assets/ecell_JNCT.png" alt="JNCT E-Cell" className="partner-logo jnct-logo" />
+        <img src="/assets/ecell_LNCTS.png" alt="JNCT E-Cell" className="partner-logo jnct-logo" />
       </div>
 
       <div className="hero-logo-container">
