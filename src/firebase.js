@@ -3,30 +3,30 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAnalytics } from "firebase/analytics";
 
-// Your web app's Firebase configuration
+// ✅ NEW Firebase config (your new project)
 const firebaseConfig = {
-  apiKey: "AIzaSyDH0hDwmK0kp5eRROB2CnCTP2mwxdw5EzI",
-  authDomain: "cosmicpreneur-520d8.firebaseapp.com",
-  projectId: "cosmicpreneur-520d8",
-  storageBucket: "cosmicpreneur-520d8.appspot.com",
-  messagingSenderId: "796315603825",
-  appId: "1:796315603825:web:2e21c1230164de941d5cd0",
-  measurementId: "G-SE7KLDHXT9"
+  apiKey: "AIzaSyAKQQ2mzm4EMo_3mAiux05s7zyVU-FGFWk",
+  authDomain: "comicpreneur-16.firebaseapp.com",
+  projectId: "comicpreneur-16",
+  storageBucket: "comicpreneur-16.firebasestorage.app",
+  messagingSenderId: "830584555173",
+  appId: "1:830584555173:web:23910ee7d9f9b09d192f4c",
+  measurementId: "G-51SXQ5E408"
 };
 
-// Initialize Firebase app
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-// Initialize Analytics (optional)
+// Analytics (safe handling)
+
 let analytics;
 try {
   analytics = getAnalytics(app);
 } catch (err) {
-  console.warn("Firebase analytics not initialized:", err);
+  console.warn("Analytics not supported in this environment");
 }
 
-// Initialize Firestore
+// ✅ Firestore (KEEP THIS — your app needs it)
 export const db = getFirestore(app);
 
-// Export Firebase app if needed elsewhere
 export default app;
