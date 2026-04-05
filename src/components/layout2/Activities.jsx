@@ -8,9 +8,9 @@ import "./Activities.css";
 gsap.registerPlugin(ScrollTrigger);
 
 const cardData = [
-  { id: 1, src: "/assets/card1.png", title: "Runway: The Card Game" },
-  { id: 2, src: "/assets/card2.png", title: "Build A Startup" },
-  { id: 3, src: "/assets/card3.png", title: "Startup Scribble" }
+  { id: 1, src: "/assets/card1.webp", title: "Runway: The Card Game" },
+  { id: 2, src: "/assets/card2.webp", title: "Build A Startup" },
+  { id: 3, src: "/assets/card3.webp", title: "Startup Scribble" }
 ];
 
 const Activities = () => {

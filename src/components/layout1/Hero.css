@@ -42,8 +42,17 @@
   transform: scale(1.1) rotate(2deg);
 }
 
-.lncts-logo {
-  height: 95px;
+/* Explicit bounding boxes ensure visually identical size constraints */
+.jnct-logo, .lnct-logo {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+}
+
+.ecell-jnct-logo, .ecell-lncts-logo {
+  height: 85px;
+  width: auto;
+  object-fit: contain;
 }
 
 .partner-x {
@@ -222,8 +231,13 @@
     filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5));
   }
 
-  .lncts-logo {
+  .jnct-logo, .lnct-logo {
+    width: 65px;
     height: 65px;
+  }
+
+  .ecell-jnct-logo, .ecell-lncts-logo {
+    height: 55px;
   }
 
   .partner-x {

@@ -21,7 +21,6 @@
 .speaker-image {
   width: 35vw;
   max-width: 450px; /* Large high fidelity speaker portrait */
-  filter: drop-shadow(15px 15px 0px #000); /* Comic book styled portrait drop shadow! */
   transform: rotate(-3deg);
   border: 10px solid #fde047; /* Thick yellow comic framing */
   border-radius: 12px;
@@ -40,8 +39,6 @@
   font-size: 65px; /* Huge comic structural heading */
   color: var(--fill-light) !important;
   letter-spacing: 2px;
-  -webkit-text-stroke: 1.5px var(--stroke-dark);
-  text-shadow: 2px 2px 0 var(--stroke-dark-soft);
   margin-bottom: 25px;
   margin-top: 0;
 }

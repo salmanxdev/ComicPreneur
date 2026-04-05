@@ -72,9 +72,11 @@ const Hero = ({ setShowRegister }) => {
 
       {/* 🤝 Partners */}
       <div className="hero-partners" ref={partnersRef}>
-        <img src="/assets/ecell_JNCT.png" alt="E-Cell LNCTS" className="partner-logo lncts-logo" />
+        <img src="/assets/JNCT_logo_white.webp" alt="JNCT" className="partner-logo jnct-logo" />
+        <img src="/assets/ecell_JNCT.webp" alt="JNCT E-Cell" className="partner-logo ecell-jnct-logo" />
         <span className="partner-x">X</span>
-        <img src="/assets/ecell_LNCTS.png" alt="JNCT E-Cell" className="partner-logo jnct-logo" />
+        <img src="/assets/ecell_LNCTS.webp" alt="E-Cell LNCTS" className="partner-logo ecell-lncts-logo" />
+        <img src="/assets/LNCT_logo_white.webp" alt="LNCT" className="partner-logo lnct-logo" />
       </div>
 
       {/* 🧩 Logo */}
@@ -86,7 +88,7 @@ const Hero = ({ setShowRegister }) => {
           </div>
 
           <img
-            src="/assets/logo.png"
+            src="/assets/logo.webp"
             alt="Comicpreneur"
             ref={logoRef}
             className="main-logo-img"

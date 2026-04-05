@@ -134,6 +134,7 @@ const Register = ({ onClose }) => {
               />
             </div>
             <p className="qr-subtitle">Scan via UPI to secure your spot</p>
+            <p className="qr-amount">Registration Charge: ₹49</p>
 
             <div className="file-upload-container">
               <p className="upload-title">Upload Payment Screenshot</p>

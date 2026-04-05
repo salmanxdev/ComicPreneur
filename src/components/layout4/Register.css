@@ -85,31 +85,30 @@
   color: var(--fill-light-strong);
   letter-spacing: 2px;
   margin: 0;
-  -webkit-text-stroke: 1.5px var(--stroke-dark);
-  text-shadow: 2px 2px 0 var(--stroke-dark-soft);
 }
 
 /* Form Container */
 .comic-register-form {
   display: flex;
   flex-direction: column;
-  gap: 12px; /* Brutally slashed global gap on desktop */
+  gap: 16px; /* Relaxed gap for better readability */
 }
 
 .input-group-row {
   display: flex;
-  gap: 12px;
+  gap: 16px;
 }
 
 /* Aggressive Input Fields */
 .comic-register-form input {
   width: 100%;
-  padding: 12px 15px; /* Slashed static input padding */
+  padding: 14px 18px; /* Restored comfortable padding */
   border: 3px solid #000;
   background: #fff;
   font-family: var(--font-body);
   font-weight: normal;
-  font-size: 14px;
+  font-size: 16px; /* Larger base font */
+  letter-spacing: 1px; /* De-clustered text */
   color: #000;
   transition: all 0.2s ease;
   box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
@@ -119,6 +118,7 @@
   color: #888;
   font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 1.5px; /* Spread out placeholder for less clutter */
 }
 
 .comic-register-form input:focus {
@@ -203,6 +203,14 @@
   text-transform: uppercase;
 }
 
+.qr-amount {
+  font-family: var(--font-heading);
+  font-size: 26px;
+  color: #db2828;
+  margin: 2px 0 0 0;
+  letter-spacing: 1.5px;
+}
+
 /* File Upload Comic Wrapper */
 .file-upload-container {
   margin-top: 10px;
@@ -251,11 +259,11 @@
 /* Responsive Compress */
 @media (max-width: 600px) {
   .comic-register-form {
-    gap: 10px; /* Slashes massive vertical gaps between inputs */
+    gap: 12px; /* Slightly relaxed */
   }
 
   .register-modal {
-    width: 85%; /* Strictly narrow bounds */
+    width: 90%; /* Strictly narrow bounds */
     padding: 18px 12px 15px;
     border-width: 3px;
     box-shadow: 4px 4px 0px #db2828; 
@@ -285,17 +293,16 @@
   .register-comic-title {
     font-size: 14px; /* Fixed small static size ensures no wrapping collision */
     letter-spacing: 1px;
-    text-shadow: 1px 1px 0 var(--stroke-dark-soft);
   }
 
   .input-group-row {
     flex-direction: column;
-    gap: 8px; /* Extreme vertical compression between grid rows */
+    gap: 10px; /* Extreme vertical compression between grid rows */
   }
 
   .comic-register-form input {
-    padding: 8px 10px; /* Severely reduced height padding */
-    font-size: 12px;
+    padding: 11px 14px; /* Severely reduced height padding */
+    font-size: 14px;
     border-width: 2px;
     box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
   }

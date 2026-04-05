@@ -19,7 +19,7 @@
 }
 
 .objectives-header { position: relative; z-index: 5; text-align: center; margin-bottom: 70px; }
-.objectives-title { font-family: var(--font-heading); font-size: 65px; color: var(--fill-light-strong); letter-spacing: 3px; -webkit-text-stroke: 1.5px var(--stroke-dark); text-shadow: 4px 4px 0 var(--stroke-dark-soft); position: relative; z-index: 10; display: inline-block; transform: rotate(-2deg); }
+.objectives-title { font-family: var(--font-heading); font-size: 65px; color: #db2828; letter-spacing: 3px; position: relative; z-index: 10; display: inline-block; transform: rotate(-2deg); }
 .obj-title-bg { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(2deg); width: 350px; height: 80px; background: #fff; border: 5px solid #000; z-index: 5; box-shadow: 8px 8px 0 rgba(0,0,0,1); }
 
 .objectives-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1400px; margin: 0 auto; position: relative; z-index: 5; }
@@ -28,9 +28,9 @@
 .objective-panel:hover { transform: translate(-6px, -6px) scale(1.02) !important; box-shadow: 16px 16px 0px rgba(0,0,0,1), -3px -3px 0px #db2828; }
 .objective-panel:nth-child(even) { background: #000; color: #fff; }
 .objective-panel:nth-child(even) .obj-text { color: #fde047; }
-.objective-panel:nth-child(even) .obj-number { color: #db2828; text-shadow: 3px 3px 0 #fde047; }
+.objective-panel:nth-child(even) .obj-number { color: #db2828; }
 
-.obj-number { font-family: var(--font-heading); font-size: 50px; color: var(--fill-light-strong); -webkit-text-stroke: 1.5px var(--stroke-dark); text-shadow: 3px 3px 0 var(--stroke-dark-soft); position: absolute; top: -30px; left: -20px; transform: rotate(-10deg); z-index: 10; }
+.obj-number { font-family: var(--font-heading); font-size: 50px; color: #db2828; position: absolute; top: -30px; left: -20px; transform: rotate(-10deg); z-index: 10; }
 .obj-content { display: flex; align-items: flex-start; gap: 15px; margin-top: 10px; }
 .obj-icon { font-family: var(--font-heading); font-size: 30px; color: #db2828; line-height: 1; padding-top: 5px; }
 .obj-text { font-family: var(--font-body); font-weight: normal; font-size: 22px; line-height: 1.6; color: #000; margin: 0; }

@@ -58,9 +58,7 @@
   font-family: var(--font-heading);
   font-size: 75px;
   color: var(--fill-light-strong);
-  -webkit-text-stroke: 1.5px var(--stroke-dark);
   letter-spacing: 3px;
-  text-shadow: 5px 5px 0 var(--stroke-dark-soft);
   margin: 0 0 15px 0;
   transform: rotate(-3deg);
   display: inline-block;
@@ -105,17 +103,16 @@
   font-style: normal;
   font-size: 32px;
   color: var(--fill-light-strong);
-  -webkit-text-stroke: 1.5px var(--stroke-dark);
-  background: #fde047; /* Aggressive solid yellow boxed highlight */
+  background: #db2828; /* Aggressive solid red boxed highlight */
   padding: 8px 20px;
   border: 4px solid #000;
   letter-spacing: 3px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   display: inline-block;
-  box-shadow: 6px 6px 0px #db2828; /* Blood red heavy shadow */
   transform: rotate(-2deg); /* Slightly off-axis comic tilt */
 }
 
+/* Contact Info Section */
 /* Links Layout */
 .footer-links {
   flex: 1;
