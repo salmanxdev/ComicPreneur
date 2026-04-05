@@ -67,6 +67,7 @@
 
 .navbar li:hover {
   transform: translateY(-2px);
+  color: #BF0902;
 }
 
 /* ===================== */

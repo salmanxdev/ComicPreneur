@@ -124,6 +124,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  
 }
 
 /* TEXT WRAPPER (IMPORTANT FIX) */
@@ -136,6 +137,11 @@
   color: var(--fill-light-strong);
   line-height: 1;
   z-index: 1;
+  
+  
+}
+.btn-text:hover {
+  color: #BF0902;
 }
 
 /* 🔥 PERFECT STROKE LAYER */
@@ -148,12 +154,15 @@
   color: var(--stroke-dark);
   z-index: -1;
   pointer-events: none;
+  
 }
 
 /* ✨ HOVER (NO TEXT BREAK) */
 .register-btn:hover {
   transform: translate(-3px, -3px);
   box-shadow: 6px 6px 0px #000;
+  
+  
 }
 
 /* ===================== */
