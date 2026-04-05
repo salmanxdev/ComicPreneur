@@ -42,8 +42,11 @@
 .navbar li::before {
   content: attr(data-text);
   position: absolute;
-  left: 2px;
-  top: 2px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  text-align: center;
+  transform: translate(2px, 2px);
   color: var(--stroke-dark);
   z-index: -1;
 }
@@ -89,7 +92,7 @@
   }
 
   .navbar li {
-    font-size: clamp(11px, 2.9vw, 15px);
+    font-size: clamp(16px, 4.5vw, 22px);
     letter-spacing: 0.2px;
     flex: 1 1 0;
     text-align: center;
@@ -97,8 +100,7 @@
 
   /* Slightly smaller stroke for mobile */
   .navbar li::before {
-    left: 1px;
-    top: 1px;
+    transform: translate(1.5px, 1.5px);
   }
 
   .navbar li a,
