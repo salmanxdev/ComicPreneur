@@ -133,13 +133,13 @@ const Register = ({ onClose }) => {
                 className="payment-qr-image"
               />
             </div>
-            <p className="qr-subtitle">Scan via UPI to secure your spot</p>
+            <p className="qr-subtitle">Scan QR or UPI 7974211542@ybl </p>
             <p className="qr-amount">Registration Charge: ₹49</p>
 
             <div className="file-upload-container">
-              <p className="upload-title">Upload Payment Screenshot</p>
+              {/*<p className="upload-title">Upload Payment Screenshot</p>*/}
               <label htmlFor="paymentProof" className="file-upload-label">
-                {paymentFile ? `FILE: ${paymentFile.name}` : "Choose payment screenshot"}
+                {paymentFile ? `FILE: ${paymentFile.name}` : "Upload Payment Screenshot"}
               </label>
               <input
                 type="file"
