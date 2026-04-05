@@ -1,72 +1,97 @@
-/* 📍 src/components/layout3/Speaker.css */
-
+/* SECTION */
 .speaker {
-  background: #db2828; /* Inherit the primary comic red scheme! */
+  background: #db2828;
   color: white;
-  padding: 80px 40px; /* Better breathing room */
+  padding: 80px 40px;
   display: flex;
   justify-content: center;
   border-top: 15px solid #000;
   border-bottom: 15px solid #000;
 }
 
+/* CONTAINER */
 .speaker-container {
   display: flex;
   align-items: center;
-  gap: 80px; /* Separator gap expanded */
-  max-width: 1400px; /* Increased constraint to accommodate larger text block */
+  gap: 80px;
+  max-width: 1400px;
   width: 100%;
 }
 
-.speaker-image {
-  width: 35vw;
-  max-width: 450px; /* Large high fidelity speaker portrait */
-  transform: rotate(-3deg);
-  border: 10px solid #fde047; /* Thick yellow comic framing */
-  border-radius: 12px;
-}
-
-.speaker-text {
-  /* Increased horizontally by +30% specifically per user request (was 500px previously) */
-  max-width: 700px; 
-  flex: 1;
+/* IMAGE BOX */
+.speaker-image-box {
   position: relative;
-  z-index: 50; /* Hard priority elevation to prevent text culling explicitly */
+  width: 100%;
+  max-width: 450px;
+  transform: rotate(-3deg);
+  border: 10px solid #fde047;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
 }
 
+/* IMAGE */
+.speaker-image {
+  width: 100%;
+  display: block;
+}
+
+/* TEXT INSIDE IMAGE */
+.speaker-image-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  padding: 12px;
+  text-align: center;
+}
+
+/* TEXT STYLE */
+.speaker-image-text h4 {
+  margin: 0;
+  font-size: 18px;
+  color: #db2828;
+}
+
+.speaker-image-text p {
+  margin: 2px 0;
+  font-size: 14px;
+}
+
+/* TEXT SIDE */
+.speaker-text {
+  max-width: 700px;
+  flex: 1;
+}
+
+/* HEADING */
 .speaker-heading {
-  font-family: var(--font-heading) !important;
-  font-size: 65px; /* Huge comic structural heading */
-  color: var(--fill-light) !important;
-  letter-spacing: 2px;
-  margin-bottom: 25px;
-  margin-top: 0;
+  font-size: 60px;
+  margin-bottom: 20px;
+  color: #fde047;
 }
 
-/* Typography explicitly expanded */
+/* PARAGRAPH */
 .speaker-paragraph {
-  font-family: var(--font-body) !important;
-  font-size: 20px; /* Significantly increased readable paragraph sizing */
+  font-size: 20px;
   line-height: 1.6;
   margin-bottom: 20px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  color: #fde047 !important; /* Explicitly mapped to yellow per user constraint */
-  text-shadow: 2px 2px 0px rgba(0,0,0,0.8); /* Re-sharpened drop-shadow to separate from yellow */
+  color: #fde047;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.8);
 }
 
-/* Responsive constraints */
+/* 📱 MOBILE RESPONSIVE */
 @media (max-width: 1024px) {
   .speaker-container {
     flex-direction: column;
     text-align: center;
     gap: 50px;
   }
-  .speaker-image {
-    width: 60vw;
-  }
+
   .speaker-text {
-    max-width: 800px; /* Expand fully centrally on tablet */
+    max-width: 100%;
   }
 }
 
@@ -74,10 +99,17 @@
   .speaker {
     padding: 60px 20px;
   }
-  .speaker-text h3 {
-    font-size: 45px;
+
+  .speaker-image-box {
+    width: 80%;
+    transform: rotate(0deg);
   }
-  .speaker-text p {
-    font-size: 18px; /* Maintain large typography on phones */
+
+  .speaker-heading {
+    font-size: 40px;
+  }
+
+  .speaker-paragraph {
+    font-size: 18px;
   }
 }

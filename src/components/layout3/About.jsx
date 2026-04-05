@@ -49,13 +49,13 @@ const About = () => {
         </p>
 
         <div className="event-details about-animate">
-          <p>
+          <p className="event-point">
             <strong>Date:</strong> 16th April, 2026 (Thursday)
           </p>
-          <p>
+          <p className="event-point">
             <strong>Time:</strong> 9:00 AM to 3:30 PM
           </p>
-          <p>
+          <p className="event-point">
             <strong>Venue:</strong> Auditorium, Jai Narain College of Technology
             (JNCT), Bhopal
           </p>
