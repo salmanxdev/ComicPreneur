@@ -43,8 +43,16 @@ const Speaker = () => {
     <section className="speaker" id="speaker" ref={sectionRef}>
 
       <div className="speaker-container">
-        
-        <img src="/assets/speaker.png" alt="speaker" className="speaker-image" />
+        <div className="speaker-card speaker-animate">
+          <img src="/assets/speaker.png" alt="speaker" className="speaker-image" />
+          <div className="speaker-caption">
+            <h4 className="speaker-name">Mr. Kamalakkannan Durairaju</h4>
+            <div className="speaker-roles">
+              <p className="speaker-title">Founder & Chief Storyteller</p>
+              <p className="speaker-company">Naadan Comics</p>
+            </div>
+          </div>
+        </div>
 
         <div className="speaker-text">
           <h3 className="speaker-animate speaker-heading">About Speaker</h3>

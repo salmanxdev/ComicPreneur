@@ -18,12 +18,65 @@
   width: 100%;
 }
 
-.speaker-image {
+.speaker-card {
   width: 35vw;
-  max-width: 450px; /* Large high fidelity speaker portrait */
+  max-width: 450px;
   transform: rotate(-3deg);
-  border: 10px solid #fde047; /* Thick yellow comic framing */
+  border: 10px solid #fde047;
   border-radius: 12px;
+  background-color: #fde047; /* Yellow background for text area */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 10px 10px 0px rgba(0,0,0,0.8);
+}
+
+.speaker-image {
+  width: 100%;
+  display: block;
+  border-bottom: 5px solid #000; /* Separator between image and text */
+}
+
+.speaker-caption {
+  text-align: center;
+  padding: 15px 10px 15px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.speaker-name {
+  font-family: var(--font-heading) !important;
+  font-size: 32px;
+  margin: 0;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #000 !important;
+  letter-spacing: 1px;
+}
+
+.speaker-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.speaker-title {
+  font-family: var(--font-heading) !important;
+  font-size: 22px;
+  margin: 0;
+  text-transform: uppercase;
+  color: #DB2828 !important; /* Red color for title */
+  line-height: 1;
+}
+
+.speaker-company {
+  font-family: var(--font-body) !important;
+  font-size: 16px;
+  margin: 0;
+  font-weight: 800;
+  color: #000 !important; /* Block color for company */
+  letter-spacing: 0.05em;
 }
 
 .speaker-text {
@@ -62,7 +115,7 @@
     text-align: center;
     gap: 50px;
   }
-  .speaker-image {
+  .speaker-card {
     width: 60vw;
   }
   .speaker-text {
@@ -79,5 +132,14 @@
   }
   .speaker-text p {
     font-size: 18px; /* Maintain large typography on phones */
+  }
+  .speaker-card {
+    width: 85vw;
+  }
+  .speaker-name {
+    font-size: 28px;
+  }
+  .speaker-title {
+    font-size: 20px;
   }
 }
