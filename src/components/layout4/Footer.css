@@ -55,11 +55,12 @@
 }
 
 .footer-logo {
-  font-family: 'Bangers', cursive;
+  font-family: var(--font-heading);
   font-size: 75px;
-  color: #fde047;
+  color: var(--fill-light-strong);
+  -webkit-text-stroke: 1.5px var(--stroke-dark);
   letter-spacing: 3px;
-  text-shadow: 5px 5px 0 #db2828;
+  text-shadow: 5px 5px 0 var(--stroke-dark-soft);
   margin: 0 0 15px 0;
   transform: rotate(-3deg);
   display: inline-block;
@@ -72,8 +73,8 @@
 }
 
 .footer-slogan {
-  font-family: 'Bangers', cursive;
-  font-size: 28px;
+  font-family: var(--font-body);
+  font-size: 32px;
   color: #fff;
   letter-spacing: 1.5px;
   margin-bottom: 25px;
@@ -87,8 +88,8 @@
 }
 
 .footer-subtext {
-  font-family: 'Inter', sans-serif;
-  font-size: 18px;
+  font-family: var(--font-body);
+  font-size: 22px;
   color: #e2e2e2;
   line-height: 1.6;
   max-width: 450px;
@@ -99,11 +100,12 @@
    CENTER NAV / RIGHT SOCIALS 
 ----------------------------- */
 .footer-heading {
-  font-family: 'Inter', sans-serif !important;
-  font-weight: 900;
-  font-style: italic;
-  font-size: 28px;
-  color: #000;
+  font-family: var(--font-heading) !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 32px;
+  color: var(--fill-light-strong);
+  -webkit-text-stroke: 1.5px var(--stroke-dark);
   background: #fde047; /* Aggressive solid yellow boxed highlight */
   padding: 8px 20px;
   border: 4px solid #000;
@@ -130,9 +132,9 @@
 }
 
 .comic-link {
-  font-family: 'Inter', sans-serif;
-  font-size: 20px;
-  font-weight: 800;
+  font-family: var(--font-nav);
+  font-size: 24px;
+  font-weight: normal;
   color: #fff;
   text-decoration: none;
   text-transform: uppercase;
@@ -177,8 +179,9 @@
   width: 75px;
   height: 75px;
   background: #db2828;
-  color: #fff;
-  font-family: 'Bangers', cursive;
+  color: var(--fill-light-strong);
+  -webkit-text-stroke: 1.5px var(--stroke-dark);
+  font-family: var(--font-heading);
   font-size: 32px;
   text-decoration: none;
   display: flex;
@@ -243,9 +246,9 @@
 
 .footer-bottom p {
   color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-weight: 800;
-  font-size: 15px;
+  font-family: var(--font-body);
+  font-weight: normal;
+  font-size: 18px;
   letter-spacing: 2px; /* Wide tracking enforces the cinematic credit aesthetic */
   text-shadow: 2px 2px 0 #db2828;
   margin: 0;

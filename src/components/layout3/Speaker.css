@@ -36,7 +36,7 @@
 }
 
 .speaker-heading {
-  font-family: var(--font-display) !important;
+  font-family: var(--font-heading) !important;
   font-size: 65px; /* Huge comic structural heading */
   color: var(--fill-light) !important;
   letter-spacing: 2px;
@@ -48,7 +48,7 @@
 
 /* Typography explicitly expanded */
 .speaker-paragraph {
-  font-family: var(--font-detail) !important;
+  font-family: var(--font-body) !important;
   font-size: 20px; /* Significantly increased readable paragraph sizing */
   line-height: 1.6;
   margin-bottom: 20px;

@@ -80,12 +80,13 @@
 }
 
 .register-comic-title {
-  font-family: 'Bangers', cursive;
-  font-size: 26px; /* Massively stripped down from 40px */
-  color: #fde047;
+  font-family: var(--font-nav);
+  font-size: 32px;
+  color: var(--fill-light-strong);
   letter-spacing: 2px;
   margin: 0;
-  text-shadow: 2px 2px 0 #db2828; /* Scaled down drop shadow */
+  -webkit-text-stroke: 1.5px var(--stroke-dark);
+  text-shadow: 2px 2px 0 var(--stroke-dark-soft);
 }
 
 /* Form Container */
@@ -106,8 +107,8 @@
   padding: 12px 15px; /* Slashed static input padding */
   border: 3px solid #000;
   background: #fff;
-  font-family: 'Inter', sans-serif;
-  font-weight: 800;
+  font-family: var(--font-body);
+  font-weight: normal;
   font-size: 14px;
   color: #000;
   transition: all 0.2s ease;
@@ -127,18 +128,19 @@
   transform: translate(-3px, -3px);
 }
 
-/* Massive Submit Execution Button */
 .comic-submit-btn {
   margin-top: 10px;
   padding: 10px 15px; /* Severely squashed vertical footprint */
   background: #db2828;
-  color: #fff;
-  font-family: 'Bangers', cursive;
-  font-size: 22px; /* Tighter button font */
+  color: var(--fill-light-strong);
+  font-family: var(--font-nav);
+  font-size: 26px; /* Tighter button font */
   letter-spacing: 2px;
   text-transform: uppercase;
   border: 4px solid #000;
   cursor: pointer;
+  -webkit-text-stroke: 1px var(--stroke-dark);
+  text-shadow: 2px 2px 0 var(--stroke-dark-soft);
   box-shadow: 5px 5px 0 #000;
   transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -193,8 +195,8 @@
 }
 
 .qr-subtitle {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-weight: normal;
   font-size: 13px;
   color: #666;
   margin: 0;
@@ -209,8 +211,8 @@
 
 .upload-title {
   margin: 0 0 8px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 700;
+  font-family: var(--font-body);
+  font-weight: normal;
   font-size: 12px;
   color: #000;
   text-transform: uppercase;
@@ -225,8 +227,8 @@
   display: block;
   background: #fde047;
   color: #000;
-  font-family: 'Inter', sans-serif;
-  font-weight: 800;
+  font-family: var(--font-body);
+  font-weight: normal;
   font-size: 14px;
   padding: 10px;
   border: 4px solid #000;
@@ -283,7 +285,7 @@
   .register-comic-title {
     font-size: 14px; /* Fixed small static size ensures no wrapping collision */
     letter-spacing: 1px;
-    text-shadow: 1px 1px 0 #db2828;
+    text-shadow: 1px 1px 0 var(--stroke-dark-soft);
   }
 
   .input-group-row {

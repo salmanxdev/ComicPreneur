@@ -1,31 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;800&family=Jaini&family=Jersey+20&family=League+Gothic&display=swap');
+/* ===================== */
+/* 🔤 GOOGLE FONT IMPORT */
+/* ===================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Jaini&family=Jersey+20&family=League+Gothic&display=swap');
+
+/* ===================== */
+/* 🎨 VARIABLES */
+/* ===================== */
 
 :root {
-  --font-body: 'Inter', sans-serif;
-  --font-detail: 'League Gothic', sans-serif;
-  --font-display: 'Jersey 20', cursive;
+  --font-body: 'League Gothic', sans-serif;
+  --font-heading: 'Jersey 20', cursive;
   --font-nav: 'Jaini', cursive;
+
   --stroke-dark: #2a0505;
   --stroke-dark-soft: #5f1212;
+
   --fill-light: #fff0a8;
   --fill-light-strong: #fff8d6;
 }
 
-*, *::before, *::after {
+/* ===================== */
+/* 🌍 GLOBAL RESET */
+/* ===================== */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
+html, body {
   margin: 0;
   padding: 0;
+}
+
+/* ===================== */
+/* 🎬 BACKGROUND */
+/* ===================== */
+
+body {
   background: linear-gradient(-45deg, #0d0000, #1f0101, #2b0000, #140000);
   background-size: 400% 400%;
   animation: bgGradient 15s ease infinite;
-  color: #fff;
+  color: white;
   font-family: var(--font-body);
   overflow-x: hidden;
 }
@@ -36,22 +54,86 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-#root {
-  width: 100%;
-  max-width: 100vw;
-  margin: 0 auto;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-}
+/* ===================== */
+/* 🧾 PARAGRAPH TEXT */
+/* ===================== */
 
 p {
-  margin: 0;
-  font-family: var(--font-detail);
-  letter-spacing: 0.03em;
+  font-family: var(--font-body);
+  letter-spacing: 0.05em;
+}
+
+/* ===================== */
+/* 🧠 HEADINGS (JERSEY 20) */
+/* ===================== */
+
+.heading {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  letter-spacing: 2px;
+  color: var(--fill-light-strong);
+}
+
+/* 🔥 Stroke Layer */
+.heading::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(2px, 2px);
+  color: var(--stroke-dark);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ===================== */
+/* 🧭 NAV TEXT (JAINI) */
+/* ===================== */
+
+.nav-text {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-nav);
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+  color: var(--fill-light);
+}
+
+/* Stroke */
+.nav-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(1.5px, 1.5px);
+  color: var(--stroke-dark-soft);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ===================== */
+/* 🔘 BUTTON TEXT (JAINI) */
+/* ===================== */
+
+.btn-text {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-nav);
+  font-size: inherit;
+  letter-spacing: inherit;
+  color: var(--fill-light-strong);
+}
+
+/* Stroke */
+.btn-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(2px, 2px);
+  color: var(--stroke-dark);
+  z-index: -1;
+  pointer-events: none;
 }

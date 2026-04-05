@@ -21,11 +21,12 @@
 }
 
 .about-title {
-  font-family: 'Bangers', cursive;
+  font-family: var(--font-heading);
   font-size: 65px;
-  color: #db2828; /* Blood red */
+  color: var(--fill-light-strong);
+  -webkit-text-stroke: 1.5px var(--stroke-dark);
   letter-spacing: 2px;
-  text-shadow: 4px 4px 0 #000;
+  text-shadow: 4px 4px 0 var(--stroke-dark-soft);
   margin-bottom: 40px;
   margin-top: 0;
 }
@@ -61,9 +62,11 @@
   display: inline-block;
   padding: 12px 25px;
   background: #fde047; /* Yellow comic button base */
-  color: #db2828 !important; /* Blood red text */
-  font-family: 'Bangers', cursive;
-  font-size: 26px !important;
+  color: var(--fill-light-strong) !important;
+  -webkit-text-stroke: 1.5px var(--stroke-dark);
+  text-shadow: 2px 2px 0 var(--stroke-dark-soft);
+  font-family: var(--font-nav);
+  font-size: 30px !important;
   text-decoration: none !important;
   text-transform: uppercase;
   border: 4px solid #000;

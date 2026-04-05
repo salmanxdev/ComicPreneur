@@ -1,8 +1,12 @@
+/* ===================== */
+/* 🔤 HERO SECTION */
+/* ===================== */
+
 .hero {
   text-align: center;
   width: 100%;
-  min-height: calc(100vh - 80px); /* Strictly bounds to the screen minus the navbar */
-  padding: 20px 20px 40px; /* Eradicated the massive 100px bottom offset */
+  min-height: calc(100vh - 80px);
+  padding: 20px 20px 40px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -13,9 +17,10 @@
   background-color: #000;
 }
 
-/* -----------------------------
-   PARTNERS COLLAB HEADER
------------------------------ */
+/* ===================== */
+/* 🤝 PARTNERS */
+/* ===================== */
+
 .hero-partners {
   display: flex;
   align-items: center;
@@ -29,8 +34,8 @@
 .partner-logo {
   height: 90px;
   object-fit: contain;
-  filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.5)); /* Adds raw comic grit */
-  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: drop-shadow(4px 4px 0px rgba(0,0,0,0.5));
+  transition: transform 0.2s ease;
 }
 
 .partner-logo:hover {
@@ -38,11 +43,11 @@
 }
 
 .lncts-logo {
-  height: 95px; /* Natively slightly larger to balance the JNC scale */
+  height: 95px;
 }
 
 .partner-x {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-size: 28px;
   font-weight: 800;
   color: #fff;
@@ -50,17 +55,21 @@
   margin: 0 10px;
 }
 
+/* ===================== */
+/* 🧩 LOGO AREA */
+/* ===================== */
+
 .hero-logo-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1600px; 
+  max-width: 1600px;
   margin: 0 auto;
 }
 
 .comic-title-container {
-  position: relative; 
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -68,20 +77,24 @@
 
 .main-logo-img {
   display: block;
-  width: 60vw; 
-  max-width: 1100px; 
-  max-height: 40vh; /* Aggressive vertical clamp explicitly to prevent the logo from growing so tall it pushes buttons offscreen on 16:9 monitors! */
+  width: 60vw;
+  max-width: 1100px;
+  max-height: 40vh;
   object-fit: contain;
   position: relative;
-  z-index: 2; 
+  z-index: 2;
 }
+
+/* ===================== */
+/* ⚡ THUNDER */
+/* ===================== */
 
 .thunder-container {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
-  width: 25vw; 
+  width: 25vw;
   max-width: 400px;
 }
 
@@ -93,35 +106,73 @@
   left: 86%;
 }
 
+/* ===================== */
+/* 🔘 REGISTER BUTTON */
+/* ===================== */
+
 .register-btn {
   padding: 15px 50px;
-  font-family: var(--font-nav);
-  font-weight: normal;
-  font-size: 34px;
-  color: var(--fill-light-strong);
-  background: #fde047; 
+  background: #fde047;
   border: 4px solid #000;
   border-radius: 15px;
   cursor: pointer;
-  box-shadow: 3px 3px 0px #000; 
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  -webkit-text-stroke: 1px var(--stroke-dark);
-  text-shadow: 1px 1px 0 var(--stroke-dark-soft);
-  transition: all 0.2s;
+  box-shadow: 3px 3px 0px #000;
   position: relative;
   z-index: 10;
-  margin-top: -40px; /* Pulls the button actively through the boundary of the logo image to kill baked-in image whitespace */
+  margin-top: -40px;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* TEXT WRAPPER (IMPORTANT FIX) */
+.register-btn .btn-text {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-nav);
+  font-size: 34px;
+  letter-spacing: 2px;
+  color: var(--fill-light-strong);
+  line-height: 1;
+  z-index: 1;
+}
+
+/* 🔥 PERFECT STROKE LAYER */
+.register-btn .btn-text::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(2px, 2px); /* smoother than left/top */
+  color: var(--stroke-dark);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ✨ HOVER (NO TEXT BREAK) */
+.register-btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 6px 6px 0px #000;
+}
+
+/* ===================== */
+/* 📱 RESPONSIVE */
+/* ===================== */
 
 @media (max-width: 1024px) {
   .main-logo-img {
     width: 65vw;
   }
+
   .thunder-container {
     width: 28vw;
-    right: 83%; 
   }
+
+  .thunder-container.left {
+    right: 83%;
+  }
+
   .thunder-container.right {
     left: 83%;
   }
@@ -129,24 +180,44 @@
 
 @media (max-width: 768px) {
   .main-logo-img {
-    width: 80vw; 
+    width: 80vw;
   }
+
   .thunder-container {
     width: 32vw;
-    right: 80%; 
   }
+
+  .thunder-container.left {
+    right: 80%;
+  }
+
   .thunder-container.right {
     left: 80%;
   }
+
   .register-btn {
     padding: 12px 30px;
-    font-size: 26px;
-    border-width: 3px;
-    margin-top: -20px; /* Aggressive space reduction on mobile viewports */
   }
-  
-  .hero-partners { gap: 15px; margin-bottom: 25px; }
-  .partner-logo { height: 60px; filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5)); }
-  .lncts-logo { height: 65px; }
-  .partner-x { font-size: 20px; }
+
+  .register-btn .btn-text {
+    font-size: 26px;
+  }
+
+  .hero-partners {
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  .partner-logo {
+    height: 60px;
+    filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.5));
+  }
+
+  .lncts-logo {
+    height: 65px;
+  }
+
+  .partner-x {
+    font-size: 20px;
+  }
 }

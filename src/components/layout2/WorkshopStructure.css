@@ -1,7 +1,7 @@
 /* 📍 src/components/layout2/WorkshopStructure.css */
 .structure-section { background-color: #fff; width: 100%; padding: 100px 40px; position: relative; overflow: hidden; border-bottom: 15px solid #000; box-sizing: border-box; background-image: linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px); background-size: 40px 40px; }
 .structure-header { text-align: center; margin-bottom: 80px; }
-.structure-title { font-family: 'Bangers', cursive; font-size: 70px; color: #fde047; letter-spacing: 3px; text-shadow: 5px 5px 0 #000; margin: 0; display: inline-block; transform: rotate(-1deg); -webkit-text-stroke: 2px #000; }
+.structure-title { font-family: var(--font-heading); font-size: 70px; color: var(--fill-light-strong); letter-spacing: 3px; text-shadow: 5px 5px 0 var(--stroke-dark-soft); margin: 0; display: inline-block; transform: rotate(-1deg); -webkit-text-stroke: 1.5px var(--stroke-dark); }
 
 .timeline-container { max-width: 1000px; margin: 0 auto; position: relative; padding: 20px 0; }
 .timeline-line { position: absolute; left: 50%; top: 0; width: 8px; background: #000; transform: translateX(-50%); z-index: 1; }
@@ -11,7 +11,7 @@
 .timeline-block.right { justify-content: flex-end; }
 .timeline-content { width: 45%; background: #fff; border: 5px solid #000; padding: 20px 25px; position: relative; box-shadow: 8px 8px 0px #000; transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
 .timeline-content:hover { transform: scale(1.05) translateY(-5px) !important; box-shadow: 12px 12px 0px #fde047; }
-.timeline-content h3 { font-family: 'Bangers', cursive; font-size: 26px; color: #000; margin: 0; letter-spacing: 1px; }
+.timeline-content h3 { font-family: var(--font-heading); font-size: 32px; color: var(--fill-light-strong); -webkit-text-stroke: 1px var(--stroke-dark); margin: 0; letter-spacing: 1px; text-shadow: 2px 2px 0 var(--stroke-dark-soft); }
 
 .type-ceremony { background: #fde047; }
 .type-session { background: #fff; }
@@ -26,12 +26,12 @@
 .timeline-block.right .timeline-dot { left: -58px; }
 
 .highlights-container { max-width: 1000px; margin: 100px auto 0; text-align: center; border-top: 5px dashed #000; padding-top: 60px; }
-.highlights-title { font-family: 'Bangers', cursive; font-size: 45px; color: #000; letter-spacing: 2px; margin-bottom: 40px; }
+.highlights-title { font-family: var(--font-heading); font-size: 45px; color: var(--fill-light-strong); -webkit-text-stroke: 1.5px var(--stroke-dark); text-shadow: 3px 3px 0 var(--stroke-dark-soft); letter-spacing: 2px; margin-bottom: 40px; }
 .highlights-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 25px; }
 .highlight-item { background: #000; color: #fff; border: 4px solid #fde047; padding: 15px 25px; box-shadow: 6px 6px 0px #db2828; transform: rotate(-2deg); transition: all 0.2s; }
 .highlight-item:nth-child(even) { transform: rotate(2deg); border-color: #db2828; box-shadow: 6px 6px 0px #fde047; }
 .highlight-item:hover { transform: rotate(0deg) scale(1.1) !important; background: #fff; color: #000; border-color: #000; box-shadow: 8px 8px 0px #000; }
-.highlight-item span { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 18px; text-transform: uppercase; }
+.highlight-item span { font-family: var(--font-nav); font-size: 26px; color: var(--fill-light-strong); -webkit-text-stroke: 1px var(--stroke-dark); text-shadow: 2px 2px 0 var(--stroke-dark-soft); text-transform: uppercase; }
 
 @media (max-width: 768px) {
   .structure-section { padding: 60px 20px; }
