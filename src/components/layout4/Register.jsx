@@ -80,7 +80,7 @@ const Register = ({ onClose }) => {
 
       // 3️⃣ Send Email via Backend (NEW ADDED PART)
       try {
-        await fetch("https://comic-preneur-backend.vercel.app/", {
+        await fetch("https://comic-preneur-backend.vercel.app/send-emails", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
