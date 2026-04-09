@@ -25,7 +25,11 @@ const Register = ({ onClose }) => {
   const [isUploading, setIsUploading] = useState(false);
 
   useEffect(() => {
-    gsap.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+    gsap.fromTo(overlayRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.3 }
+    );
+
     gsap.fromTo(modalRef.current,
       { scale: 0.95, opacity: 0, filter: "blur(4px)" },
       { scale: 1, opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power2.out" }
@@ -33,33 +37,41 @@ const Register = ({ onClose }) => {
   }, []);
 
   const handleClose = () => {
-    gsap.to(modalRef.current, { scale: 0.95, opacity: 0, filter: "blur(4px)", duration: 0.3 });
-    gsap.to(overlayRef.current, { opacity: 0, duration: 0.3, onComplete: onClose });
+    gsap.to(modalRef.current,
+      { scale: 0.95, opacity: 0, filter: "blur(4px)", duration: 0.3, ease: "power2.in" }
+    );
+
+    gsap.to(overlayRef.current,
+      { opacity: 0, duration: 0.3, onComplete: onClose }
+    );
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleFileChange = (e) => {
-    if (e.target.files[0]) setPaymentFile(e.target.files[0]);
+    if (e.target.files[0]) {
+      setPaymentFile(e.target.files[0]);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!paymentFile) {
-      alert("Please upload payment screenshot 🚨");
+      alert("Please upload your payment screenshot before submitting! 🚨");
       return;
     }
 
     setIsUploading(true);
 
     try {
-      // =============================
       // 1️⃣ Upload to Firebase Storage
-      // =============================
       const storageRef = ref(
         storage,
         `payment_screenshots/${Date.now()}_${paymentFile.name}`
@@ -68,18 +80,14 @@ const Register = ({ onClose }) => {
       const snapshot = await uploadBytes(storageRef, paymentFile);
       const paymentUrl = await getDownloadURL(snapshot.ref);
 
-      // =============================
       // 2️⃣ Save to Firestore
-      // =============================
       await addDoc(collection(db, "registrations"), {
         ...formData,
         paymentScreenshotUrl: paymentUrl,
         timestamp: new Date()
       });
 
-      // =============================
-      // 3️⃣ Send Email (NON-BLOCKING)
-      // =============================
+      // 3️⃣ Send Email (NON-BLOCKING + LOGGING)
       fetch("https://comic-preneur-backend.vercel.app/send-email", {
         method: "POST",
         headers: {
@@ -94,11 +102,10 @@ const Register = ({ onClose }) => {
         .then(data => console.log("📧 Email response:", data))
         .catch(err => console.error("❌ Email error:", err));
 
-      // =============================
-      // ✅ SUCCESS
-      // =============================
-      alert("Registration Successful 🚀 Check your email!");
+      // ✅ SUCCESS MESSAGE (YOUR CUSTOM ONE)
+      alert("Registration & Payment Proof Successfully Submitted! Boom! ⚡");
 
+      // Reset form
       setFormData({
         fullName: "",
         course: "",
@@ -135,7 +142,7 @@ const Register = ({ onClose }) => {
           <input
             type="text"
             name="fullName"
-            placeholder="Full Name"
+            placeholder="Super Hero Name (Full Name)"
             required
             value={formData.fullName}
             onChange={handleChange}
@@ -146,28 +153,42 @@ const Register = ({ onClose }) => {
             <input type="text" name="branch" placeholder="Branch" required value={formData.branch} onChange={handleChange} />
           </div>
 
-          <input type="text" name="collegeName" placeholder="College Name" required value={formData.collegeName} onChange={handleChange} />
+          <input
+            type="text"
+            name="collegeName"
+            placeholder="College Name / Secret Base"
+            required
+            value={formData.collegeName}
+            onChange={handleChange}
+          />
 
           <div className="input-group-row">
-            <input type="text" name="enrollmentNo" placeholder="Enrollment No" required value={formData.enrollmentNo} onChange={handleChange} />
-            <input type="text" name="contactNo" placeholder="Contact No" required value={formData.contactNo} onChange={handleChange} />
+            <input type="text" name="enrollmentNo" placeholder="Enrollment No." required value={formData.enrollmentNo} onChange={handleChange} />
+            <input type="text" name="contactNo" placeholder="Comm Link (Contact No)" required value={formData.contactNo} onChange={handleChange} />
           </div>
 
-          <input type="email" name="email" placeholder="Email" required value={formData.email} onChange={handleChange} />
+          <input
+            type="email"
+            name="email"
+            placeholder="Secure Email ID"
+            required
+            value={formData.email}
+            onChange={handleChange}
+          />
 
           <div className="payment-qr-section">
-            <p className="qr-title">Complete Payment ⚡</p>
+            <p className="qr-title">Complete Registration Payment ⚡</p>
 
             <div className="qr-placeholder-box">
               <img src="/assets/payment-qr.jpeg" alt="QR" className="payment-qr-image" />
             </div>
 
-            <p className="qr-subtitle">UPI: 7974211542@ybl</p>
-            <p className="qr-amount">₹99</p>
+            <p className="qr-subtitle">Scan QR or UPI 7974211542@ybl</p>
+            <p className="qr-amount">Registration Charge: ₹99</p>
 
             <div className="file-upload-container">
               <label htmlFor="paymentProof" className="file-upload-label">
-                {paymentFile ? paymentFile.name : "Upload Screenshot"}
+                {paymentFile ? `FILE: ${paymentFile.name}` : "Upload Payment Screenshot"}
               </label>
 
               <input
@@ -182,7 +203,7 @@ const Register = ({ onClose }) => {
           </div>
 
           <button type="submit" className="comic-submit-btn" disabled={isUploading}>
-            {isUploading ? "Submitting..." : "REGISTER NOW"}
+            {isUploading ? "UPLOADING PROTOCOLS... ⏳" : "REGISTER NOW"}
           </button>
 
         </form>
