@@ -240,7 +240,6 @@ const Register = ({ onClose }) => {
                 type="file"
                 id="paymentProof"
                 accept="image/*"
-                required
                 onChange={handleFileChange}
                 className="hidden-file-input"
               />
