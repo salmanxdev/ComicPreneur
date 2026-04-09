@@ -24,6 +24,10 @@ const Register = ({ onClose }) => {
   const [paymentFile, setPaymentFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
+  // ✅ NEW STATES (only addition)
+  const [contactError, setContactError] = useState("");
+  const [fileError, setFileError] = useState("");
+
   useEffect(() => {
     gsap.fromTo(overlayRef.current,
       { opacity: 0 },
@@ -48,30 +52,58 @@ const Register = ({ onClose }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+
+    // ✅ ONLY CHANGE: contact validation
+    if (name === "contactNo") {
+      if (/[^0-9]/.test(value)) {
+        setContactError("⚠️ Only numbers allowed");
+      } else if (value.length > 10) {
+        return;
+      } else {
+        setContactError("");
+      }
+
+      setFormData(prev => ({
+        ...prev,
+        contactNo: value.replace(/\D/g, "")
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
   };
 
   const handleFileChange = (e) => {
     if (e.target.files[0]) {
       setPaymentFile(e.target.files[0]);
+      setFileError(""); // ✅ clear error when selected
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    let hasError = false;
+
+    // ✅ ONLY CHANGE: screenshot validation
     if (!paymentFile) {
-      alert("Please upload your payment screenshot before submitting! 🚨");
-      return;
+      setFileError("⚠️ Please upload payment screenshot");
+      alert("⚠️ Payment Screenshot Required!");
+      hasError = true;
     }
+
+    if (formData.contactNo.length !== 10) {
+      setContactError("⚠️ Enter valid 10-digit mobile number");
+      hasError = true;
+    }
+
+    if (hasError) return;
 
     setIsUploading(true);
 
     try {
-      // 1️⃣ Upload to Firebase Storage
       const storageRef = ref(
         storage,
         `payment_screenshots/${Date.now()}_${paymentFile.name}`
@@ -80,14 +112,12 @@ const Register = ({ onClose }) => {
       const snapshot = await uploadBytes(storageRef, paymentFile);
       const paymentUrl = await getDownloadURL(snapshot.ref);
 
-      // 2️⃣ Save to Firestore
       await addDoc(collection(db, "registrations"), {
         ...formData,
         paymentScreenshotUrl: paymentUrl,
         timestamp: new Date()
       });
 
-      // 3️⃣ Send Email (NON-BLOCKING + LOGGING)
       fetch("https://comic-preneur-backend.vercel.app/send-email", {
         method: "POST",
         headers: {
@@ -102,10 +132,8 @@ const Register = ({ onClose }) => {
         .then(data => console.log("📧 Email response:", data))
         .catch(err => console.error("❌ Email error:", err));
 
-      // ✅ SUCCESS MESSAGE (YOUR CUSTOM ONE)
       alert("Registration & Payment Proof Successfully Submitted! Boom! ⚡");
 
-      // Reset form
       setFormData({
         fullName: "",
         course: "",
@@ -164,8 +192,25 @@ const Register = ({ onClose }) => {
 
           <div className="input-group-row">
             <input type="text" name="enrollmentNo" placeholder="Enrollment No." required value={formData.enrollmentNo} onChange={handleChange} />
-            <input type="text" name="contactNo" placeholder="Comm Link (Contact No)" required value={formData.contactNo} onChange={handleChange} />
+
+            <input
+              type="tel"
+              name="contactNo"
+              placeholder="Comm Link (Contact No)"
+              required
+              value={formData.contactNo}
+              onChange={handleChange}
+              inputMode="numeric"
+              pattern="[0-9]*"
+            />
           </div>
+
+          {/* ✅ Contact Error (small inline message) */}
+          {contactError && (
+            <p style={{ color: "red", fontSize: "12px" }}>
+              {contactError}
+            </p>
+          )}
 
           <input
             type="email"
@@ -200,6 +245,14 @@ const Register = ({ onClose }) => {
                 className="hidden-file-input"
               />
             </div>
+
+            {/* ✅ File Error */}
+            {fileError && (
+              <p style={{ color: "red", fontSize: "12px" }}>
+                {fileError}
+              </p>
+            )}
+
           </div>
 
           <button type="submit" className="comic-submit-btn" disabled={isUploading}>
