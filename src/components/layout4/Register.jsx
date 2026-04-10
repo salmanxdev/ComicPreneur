@@ -229,7 +229,18 @@ const Register = ({ onClose }) => {
             </div>
 
             <p className="qr-subtitle">Scan QR or UPI 7974211542@ybl</p>
-            <p className="qr-amount">Registration Charge: ₹99</p>
+    <p className="qr-amount">
+  Registration Charge: 
+  <span style={{ textDecoration: "line-through", marginLeft: "5px" }}>
+    ₹99
+  </span>
+</p>
+
+<p>
+  <span style={{ color: "green", fontWeight: "bold" ,fontSize: "25px" }}>
+    Early Bird: ₹49/-
+  </span>
+</p>
 
             <div className="file-upload-container">
               <label htmlFor="paymentProof" className="file-upload-label">
