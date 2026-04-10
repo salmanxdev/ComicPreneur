@@ -6,7 +6,7 @@ import { db } from "../../firebase";
 import * as XLSX from "xlsx";
 
 const AdminDashboard = () => {
-  const [registrations, setRegistrations] = useState([]); // ✅ FIXED
+  const [registrations, setRegistrations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -17,7 +17,7 @@ const AdminDashboard = () => {
         const snapshot = await getDocs(collection(db, "registrations"));
 
         const data = snapshot.docs.map(doc => ({
-          id: doc.id,
+          docId: doc.id, // ✅ firestore doc id
           ...doc.data()
         }));
 
@@ -32,7 +32,7 @@ const AdminDashboard = () => {
     fetchRegistrations();
   }, []);
 
-  // 📊 Export Excel
+  // 📊 Export Excel (STRICT ORDER)
   const exportExcel = () => {
     if (registrations.length === 0) {
       alert("No data to export!");
@@ -40,13 +40,37 @@ const AdminDashboard = () => {
     }
 
     const formattedData = registrations.map(reg => ({
-      ...reg,
-      timestamp: reg.timestamp?.toDate
+      "Full Name": reg.fullName || "",
+      "Contact Number": reg.contactNo || "",
+      "Email Address": reg.email || "",
+      "Semester": reg.semester || "",
+      "Branch": reg.branch || "",
+      "Course": reg.course || "",
+      "College": reg.collegeName || "",
+      "Enrollment": reg.enrollmentNo || "", // ✅ enrollment
+      "ID": reg.docId || "", // ✅ firestore id
+      "Timestamp": reg.timestamp?.toDate
         ? reg.timestamp.toDate().toLocaleString()
-        : reg.timestamp || ""
+        : reg.timestamp || "",
+      "Payment Screenshot URL": reg.paymentScreenshotUrl || ""
     }));
 
-    const ws = XLSX.utils.json_to_sheet(formattedData);
+    const ws = XLSX.utils.json_to_sheet(formattedData, {
+      header: [
+        "Full Name",
+        "Contact Number",
+        "Email Address",
+        "Semester",
+        "Branch",
+        "Course",
+        "College",
+        "Enrollment",
+        "ID",
+        "Timestamp",
+        "Payment Screenshot URL"
+      ]
+    });
+
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, "Registrations");
 
@@ -103,24 +127,28 @@ const AdminDashboard = () => {
               <th>Full Name</th>
               <th>Course</th>
               <th>Branch</th>
+              <th>Semester</th>
               <th>College</th>
-              <th>Enrollment No.</th>
+              <th>Enrollment</th>
               <th>Contact</th>
               <th>Email</th>
+              <th>Doc ID</th>
               <th>Timestamp</th>
             </tr>
           </thead>
 
           <tbody>
             {registrations.map((reg) => (
-              <tr key={reg.id}>
+              <tr key={reg.docId}>
                 <td>{reg.fullName}</td>
                 <td>{reg.course}</td>
                 <td>{reg.branch}</td>
+                <td>{reg.semester || "N/A"}</td>
                 <td>{reg.collegeName}</td>
                 <td>{reg.enrollmentNo}</td>
                 <td>{reg.contactNo}</td>
                 <td>{reg.email}</td>
+                <td>{reg.docId}</td>
                 <td>
                   {reg.timestamp?.toDate
                     ? reg.timestamp.toDate().toLocaleString()

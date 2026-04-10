@@ -15,6 +15,7 @@ const Register = ({ onClose }) => {
     fullName: "",
     course: "",
     branch: "",
+    semester: "", // ✅ added
     collegeName: "",
     enrollmentNo: "",
     contactNo: "",
@@ -24,7 +25,6 @@ const Register = ({ onClose }) => {
   const [paymentFile, setPaymentFile] = useState(null);
   const [isUploading, setIsUploading] = useState(false);
 
-  // ✅ NEW STATES (only addition)
   const [contactError, setContactError] = useState("");
   const [fileError, setFileError] = useState("");
 
@@ -53,7 +53,6 @@ const Register = ({ onClose }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // ✅ ONLY CHANGE: contact validation
     if (name === "contactNo") {
       if (/[^0-9]/.test(value)) {
         setContactError("⚠️ Only numbers allowed");
@@ -78,7 +77,7 @@ const Register = ({ onClose }) => {
   const handleFileChange = (e) => {
     if (e.target.files[0]) {
       setPaymentFile(e.target.files[0]);
-      setFileError(""); // ✅ clear error when selected
+      setFileError("");
     }
   };
 
@@ -87,7 +86,6 @@ const Register = ({ onClose }) => {
 
     let hasError = false;
 
-    // ✅ ONLY CHANGE: screenshot validation
     if (!paymentFile) {
       setFileError("⚠️ Please upload payment screenshot");
       alert("⚠️ Payment Screenshot Required!");
@@ -138,6 +136,7 @@ const Register = ({ onClose }) => {
         fullName: "",
         course: "",
         branch: "",
+        semester: "", // ✅ reset added
         collegeName: "",
         enrollmentNo: "",
         contactNo: "",
@@ -177,8 +176,32 @@ const Register = ({ onClose }) => {
           />
 
           <div className="input-group-row">
-            <input type="text" name="course" placeholder="Course" required value={formData.course} onChange={handleChange} />
-            <input type="text" name="branch" placeholder="Branch" required value={formData.branch} onChange={handleChange} />
+            <input
+              type="text"
+              name="course"
+              placeholder="Course"
+              required
+              value={formData.course}
+              onChange={handleChange}
+            />
+
+            <input
+              type="text"
+              name="branch"
+              placeholder="Branch"
+              required
+              value={formData.branch}
+              onChange={handleChange}
+            />
+
+            <input
+              type="text"
+              name="semester"
+              placeholder="Semester"
+              required
+              value={formData.semester}
+              onChange={handleChange}
+            />
           </div>
 
           <input
@@ -191,7 +214,14 @@ const Register = ({ onClose }) => {
           />
 
           <div className="input-group-row">
-            <input type="text" name="enrollmentNo" placeholder="Enrollment No." required value={formData.enrollmentNo} onChange={handleChange} />
+            <input
+              type="text"
+              name="enrollmentNo"
+              placeholder="Enrollment No."
+              required
+              value={formData.enrollmentNo}
+              onChange={handleChange}
+            />
 
             <input
               type="tel"
@@ -205,7 +235,6 @@ const Register = ({ onClose }) => {
             />
           </div>
 
-          {/* ✅ Contact Error (small inline message) */}
           {contactError && (
             <p style={{ color: "red", fontSize: "12px" }}>
               {contactError}
@@ -229,18 +258,19 @@ const Register = ({ onClose }) => {
             </div>
 
             <p className="qr-subtitle">Scan QR or UPI 7974211542@ybl</p>
-    <p className="qr-amount">
-  Registration Charge: 
-  <span style={{ textDecoration: "line-through", marginLeft: "5px" }}>
-    ₹99
-  </span>
-</p>
 
-<p>
-  <span style={{ color: "green", fontWeight: "bold" ,fontSize: "25px" }}>
-    Early Bird: ₹49/-
-  </span>
-</p>
+            <p className="qr-amount">
+              Registration Charge:
+              <span style={{ textDecoration: "line-through", marginLeft: "5px" }}>
+                ₹99
+              </span>
+            </p>
+
+            <p>
+              <span style={{ color: "green", fontWeight: "bold", fontSize: "25px" }}>
+                Early Bird: ₹49/-
+              </span>
+            </p>
 
             <div className="file-upload-container">
               <label htmlFor="paymentProof" className="file-upload-label">
@@ -256,7 +286,6 @@ const Register = ({ onClose }) => {
               />
             </div>
 
-            {/* ✅ File Error */}
             {fileError && (
               <p style={{ color: "red", fontSize: "12px" }}>
                 {fileError}
