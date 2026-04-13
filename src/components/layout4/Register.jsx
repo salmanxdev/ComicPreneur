@@ -261,14 +261,8 @@ const Register = ({ onClose }) => {
 
             <p className="qr-amount">
               Registration Charge:
-              <span style={{ textDecoration: "line-through", marginLeft: "5px" }}>
+              <span style={{  marginLeft: "5px" }}>
                 ₹99
-              </span>
-            </p>
-
-            <p>
-              <span style={{ color: "green", fontWeight: "bold", fontSize: "25px" }}>
-                Early Bird: ₹49/-
               </span>
             </p>
 
