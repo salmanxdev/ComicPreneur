@@ -1,7 +1,7 @@
 // src/components/layout4/AdminDashboard.jsx
 
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../../firebase";
 import * as XLSX from "xlsx";
 
@@ -10,16 +10,23 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // 🔥 Fetch Data
+  // 🔥 Fetch Data (Sorted Alphabetically)
   useEffect(() => {
     const fetchRegistrations = async () => {
       try {
-        const snapshot = await getDocs(collection(db, "registrations"));
+        const q = query(collection(db, "registrations"), orderBy("fullName"));
 
-        const data = snapshot.docs.map(doc => ({
-          docId: doc.id, // ✅ firestore doc id
+        const snapshot = await getDocs(q);
+
+        let data = snapshot.docs.map(doc => ({
+          docId: doc.id,
           ...doc.data()
         }));
+
+        // ✅ Fallback sort
+        data.sort((a, b) =>
+          (a.fullName || "").localeCompare(b.fullName || "")
+        );
 
         setRegistrations(data);
       } catch (err) {
@@ -32,14 +39,15 @@ const AdminDashboard = () => {
     fetchRegistrations();
   }, []);
 
-  // 📊 Export Excel (STRICT ORDER)
+  // 📊 Export Excel (WITH SERIAL NUMBER)
   const exportExcel = () => {
     if (registrations.length === 0) {
       alert("No data to export!");
       return;
     }
 
-    const formattedData = registrations.map(reg => ({
+    const formattedData = registrations.map((reg, index) => ({
+      "S.No": index + 1, // ✅ Serial Number
       "Full Name": reg.fullName || "",
       "Contact Number": reg.contactNo || "",
       "Email Address": reg.email || "",
@@ -47,8 +55,8 @@ const AdminDashboard = () => {
       "Branch": reg.branch || "",
       "Course": reg.course || "",
       "College": reg.collegeName || "",
-      "Enrollment": reg.enrollmentNo || "", // ✅ enrollment
-      "ID": reg.docId || "", // ✅ firestore id
+      "Enrollment": reg.enrollmentNo || "",
+      "ID": reg.docId || "",
       "Timestamp": reg.timestamp?.toDate
         ? reg.timestamp.toDate().toLocaleString()
         : reg.timestamp || "",
@@ -57,6 +65,7 @@ const AdminDashboard = () => {
 
     const ws = XLSX.utils.json_to_sheet(formattedData, {
       header: [
+        "S.No",
         "Full Name",
         "Contact Number",
         "Email Address",
@@ -124,6 +133,7 @@ const AdminDashboard = () => {
         >
           <thead>
             <tr>
+              <th>S.No</th> {/* ✅ New Column */}
               <th>Full Name</th>
               <th>Course</th>
               <th>Branch</th>
@@ -138,8 +148,9 @@ const AdminDashboard = () => {
           </thead>
 
           <tbody>
-            {registrations.map((reg) => (
+            {registrations.map((reg, index) => (
               <tr key={reg.docId}>
+                <td>{index + 1}</td> {/* ✅ Serial Number */}
                 <td>{reg.fullName}</td>
                 <td>{reg.course}</td>
                 <td>{reg.branch}</td>
