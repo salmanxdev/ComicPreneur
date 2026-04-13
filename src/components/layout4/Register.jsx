@@ -262,7 +262,7 @@ const Register = ({ onClose }) => {
             <p className="qr-amount">
               Registration Charge:
               <span style={{  marginLeft: "5px" }}>
-                ₹99
+                ₹100
               </span>
             </p>
 
