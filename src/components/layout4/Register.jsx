@@ -268,7 +268,7 @@ const Register = ({ onClose }) => {
 
             <p>
               <span style={{ color: "green", fontWeight: "bold", fontSize: "25px" }}>
-                Early Bird: ₹49/-
+                Discounted Price: ₹49/-
               </span>
             </p>
 
