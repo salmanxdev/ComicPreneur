@@ -254,7 +254,7 @@ const Register = ({ onClose }) => {
             <p className="qr-title">Complete Registration Payment ⚡</p>
 
             <div className="qr-placeholder-box">
-              <img src="/assets/payment-qr.png" alt="QR" className="payment-qr-image" />
+              <img src="/assets/payment-qr2.jpeg" alt="QR" className="payment-qr-image" />
             </div>
 
             <p className="qr-subtitle">Scan QR or UPI 7974211542@ybl</p>
