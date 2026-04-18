@@ -4,18 +4,20 @@ import React, { useEffect, useState } from "react";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../../firebase";
 import * as XLSX from "xlsx";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
 const AdminDashboard = () => {
   const [registrations, setRegistrations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [progress, setProgress] = useState(0);
 
-  // 🔥 Fetch Data (Sorted Alphabetically)
+  // 🔥 Fetch Data
   useEffect(() => {
     const fetchRegistrations = async () => {
       try {
         const q = query(collection(db, "registrations"), orderBy("fullName"));
-
         const snapshot = await getDocs(q);
 
         let data = snapshot.docs.map(doc => ({
@@ -23,7 +25,6 @@ const AdminDashboard = () => {
           ...doc.data()
         }));
 
-        // ✅ Fallback sort
         data.sort((a, b) =>
           (a.fullName || "").localeCompare(b.fullName || "")
         );
@@ -39,7 +40,7 @@ const AdminDashboard = () => {
     fetchRegistrations();
   }, []);
 
-  // 📊 Export Excel (WITH SERIAL NUMBER)
+  // 📊 Export Excel
   const exportExcel = () => {
     if (registrations.length === 0) {
       alert("No data to export!");
@@ -47,7 +48,7 @@ const AdminDashboard = () => {
     }
 
     const formattedData = registrations.map((reg, index) => ({
-      "S.No": index + 1, // ✅ Serial Number
+      "S.No": index + 1,
       "Full Name": reg.fullName || "",
       "Contact Number": reg.contactNo || "",
       "Email Address": reg.email || "",
@@ -86,6 +87,59 @@ const AdminDashboard = () => {
     XLSX.writeFile(wb, "registrations.xlsx");
   };
 
+  // 📥 DOWNLOAD ALL SCREENSHOTS (🔥 MAIN FEATURE)
+  const downloadAllScreenshots = async () => {
+    const zip = new JSZip();
+    const folder = zip.folder("payment_screenshots");
+
+    const valid = registrations.filter(r => r.paymentScreenshotUrl);
+
+    if (valid.length === 0) {
+      alert("No screenshots found!");
+      return;
+    }
+
+    const batchSize = 10;
+    let index = 0;
+
+    try {
+      while (index < valid.length) {
+        const batch = valid.slice(index, index + batchSize);
+
+        await Promise.all(
+          batch.map(async (reg, i) => {
+            const url = reg.paymentScreenshotUrl;
+
+            const response = await fetch(url);
+            const blob = await response.blob();
+
+            // 🔥 Clean name
+            let name = reg.fullName || `user_${index + i}`;
+            name = name
+              .replace(/[^a-zA-Z0-9]/g, "_")
+              .replace(/_+/g, "_");
+
+            // 🔥 Unique filename
+            const fileName = `${name}_${reg.contactNo || index + i}.jpg`;
+
+            folder.file(fileName, blob);
+          })
+        );
+
+        index += batchSize;
+        setProgress(index);
+      }
+
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      saveAs(zipBlob, "payment_screenshots_named.zip");
+
+      alert("Download complete!");
+    } catch (err) {
+      console.error(err);
+      alert("Download failed!");
+    }
+  };
+
   // ⏳ Loading
   if (loading) {
     return <div style={{ padding: "20px" }}>Loading registrations...</div>;
@@ -114,9 +168,22 @@ const AdminDashboard = () => {
     >
       <h1>Admin Dashboard</h1>
 
-      <button onClick={exportExcel} style={{ marginBottom: "20px" }}>
+      {/* 🔥 Buttons */}
+      <button onClick={exportExcel} style={{ marginRight: "10px" }}>
         Export to Excel
       </button>
+
+      <button onClick={downloadAllScreenshots}>
+        Download All Screenshots
+      </button>
+
+      {/* 🔥 Progress */}
+      {progress > 0 && (
+        <p>
+          Downloading: {progress} /{" "}
+          {registrations.filter(r => r.paymentScreenshotUrl).length}
+        </p>
+      )}
 
       {registrations.length === 0 ? (
         <p>No registrations found.</p>
@@ -127,13 +194,12 @@ const AdminDashboard = () => {
           style={{
             borderCollapse: "collapse",
             width: "100%",
-            background: "white",
-            color: "black"
+            marginTop: "20px"
           }}
         >
           <thead>
             <tr>
-              <th>S.No</th> {/* ✅ New Column */}
+              <th>S.No</th>
               <th>Full Name</th>
               <th>Course</th>
               <th>Branch</th>
@@ -150,7 +216,7 @@ const AdminDashboard = () => {
           <tbody>
             {registrations.map((reg, index) => (
               <tr key={reg.docId}>
-                <td>{index + 1}</td> {/* ✅ Serial Number */}
+                <td>{index + 1}</td>
                 <td>{reg.fullName}</td>
                 <td>{reg.course}</td>
                 <td>{reg.branch}</td>
